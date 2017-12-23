@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "about.h"
+#include "torgcrmmain.h"
 
 namespace Ui {
 class LoginWindow;
@@ -25,6 +26,7 @@ private slots:
 private:
     Ui::LoginWindow *ui;
     About *aboutDialog;
+    TorgCRMMain *torgCrmMainWindow;
 };
 
 #endif // LOGINWINDOW_H

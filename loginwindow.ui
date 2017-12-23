@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>462</width>
-    <height>176</height>
+    <width>469</width>
+    <height>191</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>161</x>
-      <y>3</y>
+      <y>1</y>
       <width>301</width>
       <height>101</height>
      </rect>
@@ -53,9 +53,9 @@
     <property name="geometry">
      <rect>
       <x>161</x>
-      <y>100</y>
+      <y>102</y>
       <width>150</width>
-      <height>34</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
@@ -66,9 +66,9 @@
     <property name="geometry">
      <rect>
       <x>312</x>
-      <y>100</y>
+      <y>102</y>
       <width>150</width>
-      <height>34</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
@@ -79,9 +79,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>9</y>
       <width>141</width>
-      <height>101</height>
+      <height>121</height>
      </rect>
     </property>
     <property name="text">
@@ -94,13 +94,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>462</width>
-     <height>22</height>
+     <width>469</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Fi&amp;le</string>
     </property>
     <addaction name="actionClose"/>
     <addaction name="actionAbout"/>
@@ -110,7 +110,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionClose">
    <property name="text">
-    <string>Close</string>
+    <string>&amp;Close</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -118,7 +118,7 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
  </widget>

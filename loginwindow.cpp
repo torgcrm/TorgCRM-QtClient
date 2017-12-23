@@ -14,6 +14,7 @@ LoginWindow::~LoginWindow()
 {
     delete ui;
     delete aboutDialog;
+    delete torgCrmMainWindow;
 }
 
 /**
@@ -31,7 +32,9 @@ void LoginWindow::on_cancelBtn_clicked()
  */
 void LoginWindow::on_loginBtn_clicked()
 {
-
+    torgCrmMainWindow = new TorgCRMMain(this);
+    torgCrmMainWindow->show();
+    this->hide();
 }
 
 /**
