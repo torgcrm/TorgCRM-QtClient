@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         torgcrmmain.cpp \
     loginwindow.cpp \
-    about.cpp
+    about.cpp \
+    globalobject.cpp
 
 HEADERS += \
         torgcrmmain.h \
     loginwindow.h \
-    about.h
+    about.h \
+    globalobject.h
 
 FORMS += \
         torgcrmmain.ui \

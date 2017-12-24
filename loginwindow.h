@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "about.h"
 #include "torgcrmmain.h"
+#include "globalobject.h"
 
 namespace Ui {
 class LoginWindow;
@@ -27,6 +28,10 @@ private:
     Ui::LoginWindow *ui;
     About *aboutDialog;
     TorgCRMMain *torgCrmMainWindow;
+    GLobalObject *globalObject;
+
+signals:
+    void loginSuccess(QString login, QString token);
 };
 
 #endif // LOGINWINDOW_H

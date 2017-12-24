@@ -2,6 +2,7 @@
 #define TORGCRMMAIN_H
 
 #include <QMainWindow>
+#include "globalobject.h"
 
 namespace Ui {
 class TorgCRMMain;
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::TorgCRMMain *ui;
+
+public slots:
+    void loginSuccess(QString login, QString token);
 };
 
 #endif // TORGCRMMAIN_H

@@ -2,11 +2,18 @@
 #include "ui_loginwindow.h"
 #include "about.h"
 #include "torgcrmmain.h"
+#include <QDebug>
+
+GLobalObject *GLobalObject::instance = 0;
 
 LoginWindow::LoginWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LoginWindow)
 {
+    globalObject = GLobalObject::getInstance();
+    connect (this, &LoginWindow::loginSuccess, globalObject,
+             &GLobalObject::loginSuccess);
+
     ui->setupUi(this);
 }
 
@@ -32,8 +39,14 @@ void LoginWindow::on_cancelBtn_clicked()
  */
 void LoginWindow::on_loginBtn_clicked()
 {
+    QString login = ui->userNameInput->text();
+    QString password = ui->passwordInput->text();
+
+    emit loginSuccess(login, password);
+
     torgCrmMainWindow = new TorgCRMMain(this);
     torgCrmMainWindow->show();
+
     this->hide();
 }
 
@@ -58,3 +71,4 @@ void LoginWindow::on_actionAbout_triggered()
     aboutDialog->setModal(true);
     aboutDialog->exec();
 }
+
