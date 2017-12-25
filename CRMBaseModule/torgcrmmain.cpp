@@ -7,7 +7,7 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
     ui(new Ui::TorgCRMMain)
 {
     GLobalObject *globalObject = GLobalObject::getInstance();
-    qDebug() << "Toke is: " << globalObject->getToken() << endl;
+    qDebug() << "Token is: " << globalObject->getToken() << endl;
     ui->setupUi(this);
 }
 
