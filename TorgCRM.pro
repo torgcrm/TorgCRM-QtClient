@@ -1,6 +1,10 @@
 TEMPLATE = subdirs
 
-SUBDIRS = CRMBaseModule Tests
+SUBDIRS = CRMCommons \
+        CRMBaseModule \
+        Tests
+
+CRMBaseModule.depends = CRMCommons
 
 CONFIG += ordered recursive
 

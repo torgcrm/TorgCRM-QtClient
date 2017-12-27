@@ -4,6 +4,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QIcon>
+#include <ctreeitem.h>
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),
@@ -24,7 +25,11 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
     ui->searchToolBar->addWidget(toolBarSearchInput);
     ui->searchToolBar->addWidget(searchToolbarBtn);
 
-    ui->mainMenu->header()->resize(QSize(200, 200));
+    CTreeItem *crmItem = new CTreeItem("crmCode", "CRM");
+    ui->mainMenu->addTopLevelItem(crmItem);
+
+    CTreeItem *customersItem = new CTreeItem("customersCode", "Customers", ":/icons/Icons/customers.ico");
+    crmItem->addChild(customersItem);
 }
 
 TorgCRMMain::~TorgCRMMain()
@@ -35,4 +40,9 @@ TorgCRMMain::~TorgCRMMain()
 void TorgCRMMain::loginSuccess(QString login, QString token)
 {
     qDebug() << login << token << endl;
+}
+
+void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item)
+{
+    qDebug() << static_cast<CTreeItem *>(item)->getItemCode();
 }

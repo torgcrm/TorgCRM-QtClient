@@ -78,45 +78,6 @@
           <property name="headerHidden">
            <bool>true</bool>
           </property>
-          <column>
-           <property name="text">
-            <string>Main menu</string>
-           </property>
-          </column>
-          <item>
-           <property name="text">
-            <string>CRM</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Customers</string>
-            </property>
-            <property name="icon">
-             <iconset resource="icons.qrc">
-              <normaloff>:/icons/Icons/customers.ico</normaloff>:/icons/Icons/customers.ico</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Tasks</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normalon>:/icons/Icons/task.ico</normalon>
-             </iconset>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>Warehouse</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Products</string>
-            </property>
-           </item>
-          </item>
          </widget>
         </item>
        </layout>

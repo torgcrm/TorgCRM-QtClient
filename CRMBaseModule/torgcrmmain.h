@@ -2,6 +2,8 @@
 #define TORGCRMMAIN_H
 
 #include <QMainWindow>
+#include <QTreeWidget>
+
 #include "globalobject.h"
 
 namespace Ui {
@@ -24,6 +26,8 @@ private:
 
 public slots:
     void loginSuccess(QString login, QString token);
+private slots:
+    void on_mainMenu_itemClicked(QTreeWidgetItem *item);
 };
 
 #endif // TORGCRMMAIN_H
