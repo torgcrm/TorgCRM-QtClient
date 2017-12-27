@@ -40,7 +40,7 @@
       </property>
       <widget class="QFrame" name="leftMenuFrame">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -68,17 +68,55 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="text">
-           <string>Customers</string>
+         <widget class="QTreeWidget" name="mainMenu">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>Tasks</string>
+          <property name="headerHidden">
+           <bool>true</bool>
           </property>
+          <column>
+           <property name="text">
+            <string>Main menu</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>CRM</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Customers</string>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/Icons/customers.ico</normaloff>:/icons/Icons/customers.ico</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Tasks</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normalon>:/icons/Icons/task.ico</normalon>
+             </iconset>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>Warehouse</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Products</string>
+            </property>
+           </item>
+          </item>
          </widget>
         </item>
        </layout>
@@ -124,7 +162,7 @@
            <enum>QTabWidget::Triangular</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <property name="elideMode">
            <enum>Qt::ElideNone</enum>
@@ -238,6 +276,10 @@
    </property>
   </action>
   <action name="actionAdd_New">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/Icons/customer-m.ico</normaloff>:/icons/Icons/customer-m.ico</iconset>
+   </property>
    <property name="text">
     <string>New Customer</string>
    </property>
@@ -246,6 +288,10 @@
    </property>
   </action>
   <action name="actionSearch">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/Icons/search-deep.svg</normaloff>:/icons/Icons/search-deep.svg</iconset>
+   </property>
    <property name="text">
     <string>Search</string>
    </property>
@@ -270,6 +316,10 @@
    </property>
   </action>
   <action name="actionNew_Task">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/Icons/task.ico</normaloff>:/icons/Icons/task.ico</iconset>
+   </property>
    <property name="text">
     <string>New Task</string>
    </property>
@@ -287,6 +337,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

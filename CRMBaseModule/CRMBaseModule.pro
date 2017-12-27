@@ -24,3 +24,6 @@ FORMS += \
         torgcrmmain.ui \
     loginwindow.ui \
     about.ui
+
+RESOURCES += \
+    icons.qrc

@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QIcon>
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),
@@ -18,9 +19,12 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QLineEdit *toolBarSearchInput = new QLineEdit;
     QPushButton *searchToolbarBtn = new QPushButton;
     searchToolbarBtn->setText(tr("Search"));
+    searchToolbarBtn->setIcon(QIcon(":/icons/Icons/search.svg"));
 
     ui->searchToolBar->addWidget(toolBarSearchInput);
     ui->searchToolBar->addWidget(searchToolbarBtn);
+
+    ui->mainMenu->header()->resize(QSize(200, 200));
 }
 
 TorgCRMMain::~TorgCRMMain()

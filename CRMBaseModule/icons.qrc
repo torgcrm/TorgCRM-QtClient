@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>Icons/customer-m.ico</file>
+        <file>Icons/customer-f.ico</file>
+        <file>Icons/search.svg</file>
+        <file>Icons/task.ico</file>
+        <file>Icons/customer-vip.ico</file>
+        <file>Icons/search-deep.svg</file>
+        <file>Icons/customers.ico</file>
+    </qresource>
+</RCC>
