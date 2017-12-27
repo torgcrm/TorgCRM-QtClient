@@ -3,6 +3,7 @@
 #include "about.h"
 #include "torgcrmmain.h"
 #include <QDebug>
+#include <QPixmap>
 
 GLobalObject *GLobalObject::instance = 0;
 
@@ -15,6 +16,8 @@ LoginWindow::LoginWindow(QWidget *parent) :
              &GLobalObject::loginSuccess);
 
     ui->setupUi(this);
+    ui->logoLabel->setScaledContents(true);
+    ui->logoLabel->setPixmap(QPixmap(":/icons/Icons/logo.png"));
 }
 
 LoginWindow::~LoginWindow()

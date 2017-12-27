@@ -7,5 +7,6 @@
         <file>Icons/customer-vip.ico</file>
         <file>Icons/search-deep.svg</file>
         <file>Icons/customers.ico</file>
+        <file>Icons/logo.png</file>
     </qresource>
 </RCC>
