@@ -1,6 +1,7 @@
-#include "globalobject.h"
+#include "cglobalobject.h"
 #include <QDebug>
 
+static GLobalObject *instance = NULL;
 
 GLobalObject *GLobalObject::getInstance()
 {

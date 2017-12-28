@@ -4,8 +4,8 @@
 #include "torgcrmmain.h"
 #include <QDebug>
 #include <QPixmap>
-
-GLobalObject *GLobalObject::instance = 0;
+#include <QNetworkAccessManager>
+#include <QMessageBox>
 
 LoginWindow::LoginWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,6 +18,9 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->logoLabel->setScaledContents(true);
     ui->logoLabel->setPixmap(QPixmap(":/icons/Icons/logo.png"));
+
+    worker = CJsonWorker::getInstance();
+    connect(worker, &CJsonWorker::onAuthenticateFinished, this, &LoginWindow::onAuthenticateFinished);
 }
 
 LoginWindow::~LoginWindow()
@@ -45,12 +48,7 @@ void LoginWindow::on_loginBtn_clicked()
     QString login = ui->userNameInput->text();
     QString password = ui->passwordInput->text();
 
-    emit loginSuccess(login, password);
-
-    torgCrmMainWindow = new TorgCRMMain(this);
-    torgCrmMainWindow->show();
-
-    this->hide();
+    worker->authenticate(login, password);
 }
 
 /**
@@ -73,4 +71,17 @@ void LoginWindow::on_actionAbout_triggered()
     aboutDialog = new About(this);
     aboutDialog->setModal(true);
     aboutDialog->exec();
+}
+
+void LoginWindow::onAuthenticateFinished(QNetworkReply *reply)
+{
+    if (!reply->error()) {
+        emit loginSuccess(ui->userNameInput->text(), ui->passwordInput->text());
+
+        torgCrmMainWindow = new TorgCRMMain(this);
+        torgCrmMainWindow->show();
+        this->hide();
+    } else {
+        qDebug() << "Error ---";
+    }
 }

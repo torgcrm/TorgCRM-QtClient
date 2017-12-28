@@ -6,6 +6,6 @@ SUBDIRS = CRMCommons \
 
 CRMBaseModule.depends = CRMCommons
 
-CONFIG += ordered recursive
+CONFIG += ordered
 
 OTHER_FILES = LICENSE

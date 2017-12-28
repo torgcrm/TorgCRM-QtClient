@@ -12,6 +12,7 @@
  */
 class GLobalObject : public QObject
 {
+    Q_OBJECT
 public:
     static GLobalObject *getInstance();
     /**
@@ -19,8 +20,7 @@ public:
      * @return token
      */
     QString getToken();
-private:
-    static GLobalObject *instance;
+private:    
     /**
      * @brief JHipster authentication token
      */

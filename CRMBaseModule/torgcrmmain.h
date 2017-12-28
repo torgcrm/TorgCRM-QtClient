@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTreeWidget>
 
-#include "globalobject.h"
+#include "cglobalobject.h"
 
 namespace Ui {
 class TorgCRMMain;

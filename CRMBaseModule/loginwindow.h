@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include "about.h"
 #include "torgcrmmain.h"
-#include "globalobject.h"
+#include "cglobalobject.h"
+#include <QNetworkReply>
+#include "cjsonworker.h"
 
 namespace Ui {
 class LoginWindow;
@@ -26,12 +28,14 @@ private slots:
     void on_loginBtn_clicked();
     void on_actionClose_triggered();
     void on_actionAbout_triggered();
+    void onAuthenticateFinished(QNetworkReply *reply);
 
 private:
     Ui::LoginWindow *ui;
     About *aboutDialog;
     TorgCRMMain *torgCrmMainWindow;
     GLobalObject *globalObject;
+    CJsonWorker *worker;
 
 signals:
     void loginSuccess(QString login, QString token);

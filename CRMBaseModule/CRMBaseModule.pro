@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,14 +14,12 @@ SOURCES += \
         main.cpp \
         torgcrmmain.cpp \
     loginwindow.cpp \
-    about.cpp \
-    globalobject.cpp
+    about.cpp
 
 HEADERS += \
         torgcrmmain.h \
     loginwindow.h \
-    about.h \
-    globalobject.h
+    about.h
 
 FORMS += \
         torgcrmmain.ui \
