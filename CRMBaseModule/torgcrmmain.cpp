@@ -10,9 +10,9 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TorgCRMMain)
 {
-    GLobalObject *globalObject = GLobalObject::getInstance();
-    qDebug() << "Token is: " << globalObject->getToken() << endl;
     ui->setupUi(this);
+    qDebug() << "Main window was opened successfuly.";
+    GLobalObject *globalObject = GLobalObject::getInstance();
 
     ui->leftMenuFrame->layout()->setAlignment(Qt::AlignTop);
     ui->rightContentFrame->layout()->setAlignment(Qt::AlignTop);

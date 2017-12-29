@@ -16,7 +16,10 @@ QString GLobalObject::getToken()
 
 void GLobalObject::loginSuccess(QString login, QString token)
 {
-    qDebug() << login << token << endl;
+    qDebug() << "Setting up token...";
+    qDebug() << QString("Token for login %1 was set in: %2")
+                .arg(login)
+                .arg(token);
     this->token = token;
 }
 

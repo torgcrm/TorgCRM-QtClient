@@ -6,6 +6,8 @@
 #include <QPixmap>
 #include <QNetworkAccessManager>
 #include <QMessageBox>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 LoginWindow::LoginWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -88,7 +90,10 @@ void LoginWindow::onAuthenticateFinished(QNetworkReply *reply)
 {
     qDebug() << "Checking server authentication status...";
     if (!reply->error()) {
-        emit loginSuccess(ui->userNameInput->text(), ui->passwordInput->text());
+        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        QJsonObject obj = doc.object();
+        QString token = obj.value("id_token").toString();
+        emit loginSuccess(ui->userNameInput->text(), token);
 
         torgCrmMainWindow = new TorgCRMMain(this);
         torgCrmMainWindow->show();
