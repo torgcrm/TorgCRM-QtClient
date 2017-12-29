@@ -30,6 +30,16 @@ LoginWindow::~LoginWindow()
     delete torgCrmMainWindow;
 }
 
+void LoginWindow::closeEvent(QCloseEvent *event)
+{
+    event->ignore();
+    if (QMessageBox::Yes == QMessageBox::question(this, tr("Close Confirmation?"),
+                          tr("Are you sure you want to exit?"), QMessageBox::Yes|QMessageBox::No))
+    {
+        exit(0);
+    }
+}
+
 /**
  * @brief LoginWindow::on_cancelBtn_clicked
  * When the close button was pushed
@@ -45,6 +55,7 @@ void LoginWindow::on_cancelBtn_clicked()
  */
 void LoginWindow::on_loginBtn_clicked()
 {
+    qDebug() << "Trying to login...";
     QString login = ui->userNameInput->text();
     QString password = ui->passwordInput->text();
 
@@ -75,6 +86,7 @@ void LoginWindow::on_actionAbout_triggered()
 
 void LoginWindow::onAuthenticateFinished(QNetworkReply *reply)
 {
+    qDebug() << "Checking server authentication status...";
     if (!reply->error()) {
         emit loginSuccess(ui->userNameInput->text(), ui->passwordInput->text());
 
@@ -82,6 +94,7 @@ void LoginWindow::onAuthenticateFinished(QNetworkReply *reply)
         torgCrmMainWindow->show();
         this->hide();
     } else {
-        qDebug() << "Error ---";
+        qDebug() << "Authentication faild.";
+        QMessageBox::warning(this, "Authentication Error", "Sorry, username or password was wrong.");
     }
 }

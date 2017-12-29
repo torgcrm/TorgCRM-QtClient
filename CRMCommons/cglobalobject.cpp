@@ -1,14 +1,12 @@
 #include "cglobalobject.h"
 #include <QDebug>
 
-static GLobalObject *instance = NULL;
-
 GLobalObject *GLobalObject::getInstance()
 {
-    if (!instance) {
-        instance = new GLobalObject();
+    if (!_cGlobalObject) {
+        _cGlobalObject = new GLobalObject();
     }
-    return instance;
+    return _cGlobalObject;
 }
 
 QString GLobalObject::getToken()

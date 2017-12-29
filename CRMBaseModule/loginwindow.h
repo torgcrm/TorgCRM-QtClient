@@ -2,11 +2,14 @@
 #define LOGINWINDOW_H
 
 #include <QMainWindow>
+#include <QNetworkReply>
+#include <QCloseEvent>
+#include <QMessageBox>
+
+#include "cjsonworker.h"
 #include "about.h"
 #include "torgcrmmain.h"
 #include "cglobalobject.h"
-#include <QNetworkReply>
-#include "cjsonworker.h"
 
 namespace Ui {
 class LoginWindow;
@@ -23,6 +26,7 @@ public:
     explicit LoginWindow(QWidget *parent = 0);
     ~LoginWindow();
 
+    void closeEvent(QCloseEvent * event);
 private slots:
     void on_cancelBtn_clicked();
     void on_loginBtn_clicked();

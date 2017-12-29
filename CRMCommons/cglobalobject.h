@@ -20,7 +20,7 @@ public:
      * @return token
      */
     QString getToken();
-private:    
+private:
     /**
      * @brief JHipster authentication token
      */
@@ -33,5 +33,7 @@ public slots:
      */
     void loginSuccess(QString login, QString token);
 };
+
+static GLobalObject *_cGlobalObject = NULL;
 
 #endif // GLOBALOBJECT_H

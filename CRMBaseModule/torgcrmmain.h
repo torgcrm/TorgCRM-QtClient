@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QTreeWidget>
+#include <QCloseEvent>
+#include <QMessageBox>
 
 #include "cglobalobject.h"
 
@@ -21,6 +23,15 @@ public:
     explicit TorgCRMMain(QWidget *parent = 0);
     ~TorgCRMMain();
 
+    void closeEvent(QCloseEvent *event)
+    {
+        event->ignore();
+        if (QMessageBox::Yes == QMessageBox::question(this, tr("Close Confirmation?"),
+                              tr("Are you sure you want to exit?"), QMessageBox::Yes|QMessageBox::No))
+        {
+            exit(0);
+        }
+    }
 private:
     Ui::TorgCRMMain *ui;
 

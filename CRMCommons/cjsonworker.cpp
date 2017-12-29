@@ -6,19 +6,18 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
-static CJsonWorker *instance = NULL;
-
 CJsonWorker *CJsonWorker::getInstance()
 {
-    if (!instance) {
-        instance = new CJsonWorker();
+    if (!_cJsonWorker) {
+        _cJsonWorker = new CJsonWorker();
     }
-    return instance;
+    return _cJsonWorker;
 }
 
 void CJsonWorker::authenticate(QString login, QString password)
 {
-    QNetworkAccessManager *networkManager = new QNetworkAccessManager;
+    qDebug() << "Trying to authenticate...";
+    QNetworkAccessManager *networkManager = new QNetworkAccessManager();
     connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onAuthenticateDataLoaded);
 
     QUrl loginUrl("http://localhost:8080/api/authenticate");
@@ -34,7 +33,6 @@ void CJsonWorker::authenticate(QString login, QString password)
 
 void CJsonWorker::onAuthenticateDataLoaded(QNetworkReply *reply)
 {
-    qDebug() << "onAuthenticateDataLoaded:::";
-    qDebug() << reply->readAll();
+    qDebug() << "Server sent back the data.";
     emit onAuthenticateFinished(reply);
 }

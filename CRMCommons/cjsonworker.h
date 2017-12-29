@@ -2,8 +2,8 @@
 #define CJSONWORKER_H
 
 #include <QObject>
-#include <QtNetwork/QNetworkAccessManager>
 #include <capiurls.h>
+#include <QNetworkReply>
 
 /**
  * @brief The CJsonWorker class helper to work with REST api
@@ -29,5 +29,7 @@ signals:
      */
     void onAuthenticateFinished(QNetworkReply *reply);
 };
+
+static CJsonWorker *_cJsonWorker = NULL;
 
 #endif // CJSONWORKER_H
