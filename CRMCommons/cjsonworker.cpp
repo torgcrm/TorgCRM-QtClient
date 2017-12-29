@@ -20,8 +20,12 @@ void CJsonWorker::authenticate(QString login, QString password)
     QNetworkAccessManager *networkManager = new QNetworkAccessManager();
     connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onAuthenticateDataLoaded);
 
-    QUrl loginUrl("http://localhost:8080/api/authenticate");
-    QNetworkRequest request(loginUrl);
+    QString loginUrl = API_URL;
+
+    qDebug() << loginUrl.append(AUTHENTICATE_URL);
+
+    QUrl loginQUrl(loginUrl);
+    QNetworkRequest request(loginQUrl);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QJsonObject jsonObject;

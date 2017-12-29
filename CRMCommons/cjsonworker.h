@@ -19,6 +19,8 @@ public:
      * @param password
      */
     void authenticate(QString login, QString password);
+private:
+    const QString API_URL = "http://localhost:8080";
 private slots:
     void onAuthenticateDataLoaded(QNetworkReply *reply);
 signals:

@@ -12,7 +12,7 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
 {
     ui->setupUi(this);
     qDebug() << "Main window was opened successfuly.";
-    GLobalObject *globalObject = GLobalObject::getInstance();
+    globalObject = GLobalObject::getInstance();
 
     ui->leftMenuFrame->layout()->setAlignment(Qt::AlignTop);
     ui->rightContentFrame->layout()->setAlignment(Qt::AlignTop);
@@ -35,11 +35,6 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
 TorgCRMMain::~TorgCRMMain()
 {
     delete ui;
-}
-
-void TorgCRMMain::loginSuccess(QString login, QString token)
-{
-    qDebug() << login << token << endl;
 }
 
 void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item)
