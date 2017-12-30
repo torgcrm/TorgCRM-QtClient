@@ -43,9 +43,11 @@ void CJsonWorker::getAllMenus()
     QNetworkAccessManager *networkManager = new QNetworkAccessManager();
     connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onMenuDataLoaded);
 
-    QString loginUrl = API_URL;
-    QUrl loginQUrl(loginUrl);
-    QNetworkRequest request(loginQUrl);
+    QString menuUrl = API_URL;
+    menuUrl.append(MENUS_URL);
+
+    QUrl menuQUrl(menuUrl);
+    QNetworkRequest request(menuQUrl);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
     networkManager->get(request);

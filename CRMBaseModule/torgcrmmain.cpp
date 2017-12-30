@@ -4,6 +4,11 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QIcon>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
+
 #include "ctreeitem.h"
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
@@ -42,11 +47,25 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item)
 
 void TorgCRMMain::onMainMenuDataLoadFinished(QNetworkReply *reply)
 {
-    qDebug() << "TorgCRMForm initializing menu...";
+    if (!reply->error()) {
+        qDebug() << "TorgCRMForm initializing menu...";
 
-    CTreeItem *crmItem = new CTreeItem("crmCode", "CRM");
-    ui->mainMenu->addTopLevelItem(crmItem);
-
-    CTreeItem *customersItem = new CTreeItem("customersCode", "Customers", ":/icons/Icons/customers.ico");
-    crmItem->addChild(customersItem);
+        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        qDebug() << doc.isArray();
+        foreach (QJsonValue topLevelVal, doc.array()) {
+            QJsonObject topLevelObject = topLevelVal.toObject();
+            CTreeItem *menuTopLevelItem = new CTreeItem(topLevelObject.value("code").toString(),
+                                               topLevelObject.value("title").toString());
+            ui->mainMenu->addTopLevelItem(menuTopLevelItem);
+            foreach (QJsonValue item, topLevelObject.value("items").toArray()) {
+                QJsonObject itemObject = item.toObject();
+                CTreeItem *menuItem = new CTreeItem(itemObject.value("code").toString(),
+                                                   itemObject.value("title").toString(),
+                                                   itemObject.value("icon").toString());
+                menuTopLevelItem->addChild(menuItem);
+            }
+        }
+    } else {
+        qDebug() << "Error while loading Menu.";
+    }
 }
