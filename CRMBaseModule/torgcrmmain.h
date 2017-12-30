@@ -5,8 +5,10 @@
 #include <QTreeWidget>
 #include <QCloseEvent>
 #include <QMessageBox>
+#include <QNetworkReply>
 
 #include "cglobalobject.h"
+#include "cjsonworker.h"
 
 namespace Ui {
 class TorgCRMMain;
@@ -35,9 +37,11 @@ public:
 private:
     Ui::TorgCRMMain *ui;
     GLobalObject *globalObject;
+    CJsonWorker *cJsonWorker;
 
 private slots:
     void on_mainMenu_itemClicked(QTreeWidgetItem *item);
+    void onMainMenuDataLoadFinished(QNetworkReply *reply);
 };
 
 #endif // TORGCRMMAIN_H

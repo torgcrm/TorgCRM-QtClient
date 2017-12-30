@@ -2,8 +2,12 @@
 #define CJSONWORKER_H
 
 #include <QObject>
-#include <capiurls.h>
 #include <QNetworkReply>
+#include "capiurls.h"
+#include "cglobalobject.h"
+
+#define AUTHORIZATION_HEADER "Authorization"
+#define BEARER_PART "Bearer "
 
 /**
  * @brief The CJsonWorker class helper to work with REST api
@@ -19,10 +23,17 @@ public:
      * @param password
      */
     void authenticate(QString login, QString password);
+    /**
+     * @brief getAllMenus return JSON with menu list
+     */
+    void getAllMenus();
 private:
     const QString API_URL = "http://localhost:8080";
+    GLobalObject *globalObject = GLobalObject::getInstance();
+    QString getTokenBearer();
 private slots:
     void onAuthenticateDataLoaded(QNetworkReply *reply);
+    void onMenuDataLoaded(QNetworkReply *reply);
 signals:
     /**
      * @brief onAuthenticateFinished this signal should rise when the data sent to the
@@ -30,6 +41,11 @@ signals:
      * @param reply JSON object from JHipster server.
      */
     void onAuthenticateFinished(QNetworkReply *reply);
+    /**
+     * @brief onMenuLoadFinished this signal rise when the server return JSON with menu list
+     * @param reply network reply
+     */
+    void onMenuLoadFinished(QNetworkReply *reply);
 };
 
 static CJsonWorker *_cJsonWorker = NULL;

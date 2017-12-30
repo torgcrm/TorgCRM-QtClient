@@ -6,6 +6,7 @@
 class CTreeItem : public QTreeWidgetItem
 {
 private:
+    long id;
     QString itemCode;
 public:
     CTreeItem(QString itemCode, QString title);

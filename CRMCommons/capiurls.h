@@ -4,3 +4,4 @@
 #endif // CAPIURLS_H
 
 #define AUTHENTICATE_URL "/api/authenticate"
+#define MENUS_URL "/api/menus"

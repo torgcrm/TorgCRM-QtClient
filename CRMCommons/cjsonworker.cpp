@@ -1,10 +1,11 @@
-#include "cjsonworker.h"
 #include <QUrl>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
+
+#include "cjsonworker.h"
 
 CJsonWorker *CJsonWorker::getInstance()
 {
@@ -22,7 +23,7 @@ void CJsonWorker::authenticate(QString login, QString password)
 
     QString loginUrl = API_URL;
 
-    qDebug() << loginUrl.append(AUTHENTICATE_URL);
+    loginUrl.append(AUTHENTICATE_URL);
 
     QUrl loginQUrl(loginUrl);
     QNetworkRequest request(loginQUrl);
@@ -35,8 +36,36 @@ void CJsonWorker::authenticate(QString login, QString password)
     networkManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
+void CJsonWorker::getAllMenus()
+{
+    globalObject = GLobalObject::getInstance();
+
+    QNetworkAccessManager *networkManager = new QNetworkAccessManager();
+    connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onMenuDataLoaded);
+
+    QString loginUrl = API_URL;
+    QUrl loginQUrl(loginUrl);
+    QNetworkRequest request(loginQUrl);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
+    networkManager->get(request);
+}
+
+QString CJsonWorker::getTokenBearer()
+{
+    QString token(BEARER_PART);
+    token.append(globalObject->getToken());
+    return token;
+}
+
 void CJsonWorker::onAuthenticateDataLoaded(QNetworkReply *reply)
 {
     qDebug() << "Server sent back the data.";
     emit onAuthenticateFinished(reply);
+}
+
+void CJsonWorker::onMenuDataLoaded(QNetworkReply *reply)
+{
+    qDebug() << "Menu was loaded from server...";
+    emit onMenuLoadFinished(reply);
 }

@@ -4,7 +4,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QIcon>
-#include <ctreeitem.h>
+#include "ctreeitem.h"
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),
@@ -13,6 +13,10 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
     ui->setupUi(this);
     qDebug() << "Main window was opened successfuly.";
     globalObject = GLobalObject::getInstance();
+    cJsonWorker = CJsonWorker::getInstance();
+
+    connect(cJsonWorker, &CJsonWorker::onMenuLoadFinished, this, &TorgCRMMain::onMainMenuDataLoadFinished);
+    cJsonWorker->getAllMenus(); // load menu from server
 
     ui->leftMenuFrame->layout()->setAlignment(Qt::AlignTop);
     ui->rightContentFrame->layout()->setAlignment(Qt::AlignTop);
@@ -24,12 +28,6 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
 
     ui->searchToolBar->addWidget(toolBarSearchInput);
     ui->searchToolBar->addWidget(searchToolbarBtn);
-
-    CTreeItem *crmItem = new CTreeItem("crmCode", "CRM");
-    ui->mainMenu->addTopLevelItem(crmItem);
-
-    CTreeItem *customersItem = new CTreeItem("customersCode", "Customers", ":/icons/Icons/customers.ico");
-    crmItem->addChild(customersItem);
 }
 
 TorgCRMMain::~TorgCRMMain()
@@ -40,4 +38,15 @@ TorgCRMMain::~TorgCRMMain()
 void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item)
 {
     qDebug() << static_cast<CTreeItem *>(item)->getItemCode();
+}
+
+void TorgCRMMain::onMainMenuDataLoadFinished(QNetworkReply *reply)
+{
+    qDebug() << "TorgCRMForm initializing menu...";
+
+    CTreeItem *crmItem = new CTreeItem("crmCode", "CRM");
+    ui->mainMenu->addTopLevelItem(crmItem);
+
+    CTreeItem *customersItem = new CTreeItem("customersCode", "Customers", ":/icons/Icons/customers.ico");
+    crmItem->addChild(customersItem);
 }
