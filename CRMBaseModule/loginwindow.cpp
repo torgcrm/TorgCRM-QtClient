@@ -1,6 +1,6 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
-#include "about.h"
+#include "aboutdialog.h"
 #include "torgcrmmain.h"
 #include <QDebug>
 #include <QPixmap>
@@ -71,7 +71,7 @@ void LoginWindow::on_loginBtn_clicked()
 void LoginWindow::on_actionClose_triggered()
 {
     qDebug("Triggered close action.");
-    exit(0);
+    close();
 }
 
 /**
@@ -81,7 +81,7 @@ void LoginWindow::on_actionClose_triggered()
 void LoginWindow::on_actionAbout_triggered()
 {
     qDebug("Triggered about action.");
-    aboutDialog = new About(this);
+    aboutDialog = new AboutDialog(this);
     aboutDialog->setModal(true);
     aboutDialog->exec();
 }

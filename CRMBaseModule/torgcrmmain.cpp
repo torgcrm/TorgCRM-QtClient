@@ -10,6 +10,10 @@
 #include <QJsonValue>
 
 #include "ctreeitem.h"
+#include "customerdialog.h"
+#include "customersearchdialog.h"
+#include "aboutdialog.h"
+#include "taskdialog.h"
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),
@@ -68,4 +72,56 @@ void TorgCRMMain::onMainMenuDataLoadFinished(QNetworkReply *reply)
     } else {
         qDebug() << "Error while loading Menu.";
     }
+}
+
+void TorgCRMMain::on_actionClose_triggered()
+{
+    close();
+}
+
+void TorgCRMMain::on_actionAdd_New_triggered()
+{
+    CustomerDialog *customerDialog = new CustomerDialog(this);
+    customerDialog->setModal(true);
+    customerDialog->exec();
+}
+
+void TorgCRMMain::on_actionSearch_triggered()
+{
+    CustomerSearchDialog *customerSearchDialog = new CustomerSearchDialog(this);
+    customerSearchDialog->setModal(true);
+    customerSearchDialog->exec();
+}
+
+void TorgCRMMain::on_actionAbout_triggered()
+{
+    AboutDialog *aboutDialog = new AboutDialog(this);
+    aboutDialog->setModal(true);
+    aboutDialog->exec();
+}
+
+void TorgCRMMain::on_actionNew_Task_triggered()
+{
+    openTaskDialog();
+}
+
+void TorgCRMMain::on_actionNew_Meeting_triggered()
+{
+    openTaskDialog();
+}
+
+void TorgCRMMain::on_actionNew_Email_triggered()
+{
+    openTaskDialog();
+}
+
+void TorgCRMMain::on_actionCall_Task_triggered()
+{
+    openTaskDialog();
+}
+
+void TorgCRMMain::openTaskDialog() {
+    TaskDialog *taskDialog = new TaskDialog(this);
+    taskDialog->setModal(true);
+    taskDialog->exec();
 }

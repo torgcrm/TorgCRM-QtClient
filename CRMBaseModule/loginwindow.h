@@ -7,7 +7,7 @@
 #include <QMessageBox>
 
 #include "cjsonworker.h"
-#include "about.h"
+#include "aboutdialog.h"
 #include "torgcrmmain.h"
 #include "cglobalobject.h"
 
@@ -36,7 +36,7 @@ private slots:
 
 private:
     Ui::LoginWindow *ui;
-    About *aboutDialog;
+    AboutDialog *aboutDialog;
     TorgCRMMain *torgCrmMainWindow;
     GLobalObject *globalObject;
     CJsonWorker *worker;

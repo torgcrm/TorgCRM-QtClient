@@ -39,9 +39,18 @@ private:
     GLobalObject *globalObject;
     CJsonWorker *cJsonWorker;
 
+    void openTaskDialog();
 private slots:
     void on_mainMenu_itemClicked(QTreeWidgetItem *item);
     void onMainMenuDataLoadFinished(QNetworkReply *reply);
+    void on_actionClose_triggered();
+    void on_actionAdd_New_triggered();
+    void on_actionSearch_triggered();
+    void on_actionAbout_triggered();
+    void on_actionNew_Task_triggered();
+    void on_actionNew_Meeting_triggered();
+    void on_actionNew_Email_triggered();
+    void on_actionCall_Task_triggered();
 };
 
 #endif // TORGCRMMAIN_H

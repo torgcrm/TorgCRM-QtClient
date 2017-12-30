@@ -14,17 +14,26 @@ SOURCES += \
         main.cpp \
         torgcrmmain.cpp \
     loginwindow.cpp \
-    about.cpp
+    taskdialog.cpp \
+    customersearchdialog.cpp \
+    customerdialog.cpp \
+    aboutdialog.cpp
 
 HEADERS += \
         torgcrmmain.h \
     loginwindow.h \
-    about.h
+    taskdialog.h \
+    customersearchdialog.h \
+    customerdialog.h \
+    aboutdialog.h
 
 FORMS += \
         torgcrmmain.ui \
     loginwindow.ui \
-    about.ui
+    taskdialog.ui \
+    customersearchdialog.ui \
+    customerdialog.ui \
+    aboutdialog.ui
 
 RESOURCES += \
     icons.qrc
