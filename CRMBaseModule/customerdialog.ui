@@ -59,6 +59,9 @@
       <height>201</height>
      </rect>
     </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
       <string>Tab 1</string>
@@ -92,7 +95,7 @@
       <x>547</x>
       <y>5</y>
       <width>250</width>
-      <height>250</height>
+      <height>230</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -143,9 +146,9 @@
     <property name="geometry">
      <rect>
       <x>547</x>
-      <y>255</y>
+      <y>236</y>
       <width>251</width>
-      <height>70</height>
+      <height>90</height>
      </rect>
     </property>
     <property name="frameShape">
