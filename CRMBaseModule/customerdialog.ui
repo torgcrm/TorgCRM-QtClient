@@ -19,13 +19,13 @@
   <property name="windowTitle">
    <string>Customer</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="bottomButtons">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>545</x>
      <y>560</y>
-     <width>431</width>
-     <height>34</height>
+     <width>250</width>
+     <height>35</height>
     </rect>
    </property>
    <property name="orientation">
@@ -39,7 +39,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>360</y>
+     <y>359</y>
      <width>800</width>
      <height>200</height>
     </rect>
@@ -54,22 +54,27 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>201</height>
+      <y>1</y>
+      <width>800</width>
+      <height>200</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
-    <widget class="QWidget" name="tab_3">
+    <widget class="QWidget" name="ordersTab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Orders</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_4">
+    <widget class="QWidget" name="contactsTab">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Contacts</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="notesTab">
+     <attribute name="title">
+      <string>Notes and Rating</string>
      </attribute>
     </widget>
    </widget>
@@ -106,7 +111,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="uploadPhotoBtn">
        <property name="text">
         <string>Upload photo</string>
        </property>
@@ -114,7 +119,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="customerDataFrame">
     <property name="geometry">
      <rect>
       <x>5</x>
@@ -130,25 +135,85 @@
      <enum>QFrame::Raised</enum>
     </property>
     <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
+     <item row="1" column="0">
+      <widget class="QLabel" name="customerFullNameLabel">
        <property name="text">
-        <string>Full name</string>
+        <string>Full name:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="customerFullNameInput"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="customerPhoneNumberLabel">
+       <property name="text">
+        <string>Phone number:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="customerPhoneNumberInput"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="customerEmailLabel">
+       <property name="text">
+        <string>Email:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="customerEmailInput"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="customerFaxLabel">
+       <property name="text">
+        <string>Fax:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="customerFaxInput"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="customerSourceLabel">
+       <property name="text">
+        <string>Source:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="customerSourceInput"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="customerTypeLabel">
+       <property name="text">
+        <string>Customer type:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QComboBox" name="customerTypeCombo"/>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="customerCommentsLabel">
+       <property name="text">
+        <string>Comments</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QTextEdit" name="customerCommentsTextInput"/>
      </item>
     </layout>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QFrame" name="customerStatisticsFrame">
     <property name="geometry">
      <rect>
       <x>547</x>
       <y>236</y>
-      <width>251</width>
-      <height>90</height>
+      <width>250</width>
+      <height>87</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -159,42 +224,42 @@
     </property>
     <layout class="QFormLayout" name="formLayout_2">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="customerOrdersLabel">
        <property name="text">
         <string>Orders:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="customerOrderOutput">
        <property name="text">
         <string>15</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="customerRatingLabel">
        <property name="text">
         <string>Rating:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="customerRatingOutput">
        <property name="text">
         <string>4,3</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="customerLastOrderDateLabel">
        <property name="text">
         <string>Last order date:</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="customerLastOrderDateOutput">
        <property name="text">
         <string>25.12.2017</string>
        </property>
@@ -202,7 +267,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="shoMoreStatisticsBtn">
     <property name="geometry">
      <rect>
       <x>547</x>
