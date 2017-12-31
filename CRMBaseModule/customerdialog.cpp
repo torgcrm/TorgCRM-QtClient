@@ -6,6 +6,8 @@ CustomerDialog::CustomerDialog(QWidget *parent) :
     ui(new Ui::CustomerDialog)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    this->setFixedSize(QSize(800, 600));
 }
 
 CustomerDialog::~CustomerDialog()
