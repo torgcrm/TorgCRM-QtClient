@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>TorgCRMMain</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/Icons/customers.ico</normaloff>:/icons/Icons/customers.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="leftMargin">
@@ -128,7 +132,7 @@
            <enum>QTabWidget::Triangular</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>-1</number>
           </property>
           <property name="elideMode">
            <enum>Qt::ElideNone</enum>
@@ -139,11 +143,6 @@
           <property name="movable">
            <bool>true</bool>
           </property>
-          <widget class="QWidget" name="welcomTab">
-           <attribute name="title">
-            <string>Welcome</string>
-           </attribute>
-          </widget>
          </widget>
         </item>
        </layout>

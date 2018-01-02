@@ -9,6 +9,11 @@
 
 #include "cglobalobject.h"
 #include "cjsonworker.h"
+#include "ctreeitem.h"
+
+#define CUSTOMERS_MENU "customers"
+#define TASKS_MENU "tasks"
+#define DASHBOARD_MENU "dashboard"
 
 namespace Ui {
 class TorgCRMMain;
@@ -40,8 +45,10 @@ private:
     CJsonWorker *cJsonWorker;
 
     void openTaskDialog();
+    bool checkExistingTab(int index, CTreeItem *cTreeItem);
+
 private slots:
-    void on_mainMenu_itemClicked(QTreeWidgetItem *item);
+    void on_mainMenu_itemClicked(QTreeWidgetItem *item, int index);
     void onMainMenuDataLoadFinished(QNetworkReply *reply);
     void on_actionClose_triggered();
     void on_actionAdd_New_triggered();
@@ -51,6 +58,7 @@ private slots:
     void on_actionNew_Meeting_triggered();
     void on_actionNew_Email_triggered();
     void on_actionCall_Task_triggered();
+    void on_mainCRMTabWidget_tabCloseRequested(int index);
 };
 
 #endif // TORGCRMMAIN_H

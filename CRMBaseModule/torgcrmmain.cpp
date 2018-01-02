@@ -44,9 +44,48 @@ TorgCRMMain::~TorgCRMMain()
     delete ui;
 }
 
-void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item)
+bool TorgCRMMain::checkExistingTab(int index, CTreeItem *cTreeItem)
 {
-    qDebug() << static_cast<CTreeItem *>(item)->getItemCode();
+    int tabsCount = ui->mainCRMTabWidget->count();
+    for (int i = 0; i < tabsCount; i ++) {
+        QString tabText = ui->mainCRMTabWidget->tabText(i).replace("&", "");
+        if (tabText.compare(cTreeItem->text(index)) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
+{
+    CTreeItem *cTreeItem = static_cast<CTreeItem *>(item);
+    /** Customers **/
+    if (QString::compare(CUSTOMERS_MENU, cTreeItem->getItemCode(), Qt::CaseInsensitive) == 0) {
+        QFrame *frame = new QFrame();
+        if (!checkExistingTab(index, cTreeItem)) {
+            int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
+            ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+        }
+    }
+
+    /** Tasks **/
+    if (QString::compare(TASKS_MENU, cTreeItem->getItemCode(), Qt::CaseInsensitive) == 0) {
+        QFrame *frame = new QFrame();
+        if (!checkExistingTab(index, cTreeItem)) {
+            int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
+            ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+        }
+    }
+
+    /** Dashboard **/
+    if (QString::compare(DASHBOARD_MENU, cTreeItem->getItemCode(), Qt::CaseInsensitive) == 0) {
+        QFrame *frame = new QFrame();
+        if (!checkExistingTab(index, cTreeItem)) {
+            int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
+            ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+        }
+    }
+
 }
 
 void TorgCRMMain::onMainMenuDataLoadFinished(QNetworkReply *reply)
@@ -124,4 +163,9 @@ void TorgCRMMain::openTaskDialog() {
     TaskDialog *taskDialog = new TaskDialog(this);
     taskDialog->setModal(true);
     taskDialog->exec();
+}
+
+void TorgCRMMain::on_mainCRMTabWidget_tabCloseRequested(int index)
+{
+    ui->mainCRMTabWidget->removeTab(index);
 }
