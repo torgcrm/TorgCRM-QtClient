@@ -70,7 +70,7 @@ int TorgCRMMain::getTabByName(QString tabName)
             return i;
         }
     }
-    return 0;
+    return -1;
 }
 
 void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
@@ -82,8 +82,10 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
         if (!checkExistingTab(index, cTreeItem)) {
             int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
             ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+            cJsonWorker->getAllCustomers();
+        } else {
+            ui->mainCRMTabWidget->setCurrentIndex(this->getTabByName(cTreeItem->text(index)));
         }
-        cJsonWorker->getAllCustomers();
     }
 
     /** Tasks **/
@@ -92,6 +94,8 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
         if (!checkExistingTab(index, cTreeItem)) {
             int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
             ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+        } else {
+            ui->mainCRMTabWidget->setCurrentIndex(this->getTabByName(cTreeItem->text(index)));
         }
     }
 
@@ -101,6 +105,8 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
         if (!checkExistingTab(index, cTreeItem)) {
             int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
             ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+        } else {
+            ui->mainCRMTabWidget->setCurrentIndex(this->getTabByName(cTreeItem->text(index)));
         }
     }
 
@@ -134,18 +140,19 @@ void TorgCRMMain::onCustomersLoadFinished(QNetworkReply *reply)
 {
     if (!reply->error()) {
         qDebug() << "TorgCRMForm customers was loaded...";
-
-        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
         QFrame *tabWidget = qobject_cast<QFrame *>(ui->mainCRMTabWidget->widget(this->getTabByName("Customers")));
-        CustomerDataWidget *customerDataWidget = new CustomerDataWidget(tabWidget);
+        if (tabWidget->children().size() < 1) {
+            QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+            CustomerDataWidget *customerDataWidget = new CustomerDataWidget(tabWidget);
 
-        QVBoxLayout *vBoxLayout = new QVBoxLayout;
-        tabWidget->setLayout(vBoxLayout);
-        vBoxLayout->addWidget(customerDataWidget);
+            QVBoxLayout *vBoxLayout = new QVBoxLayout;
+            tabWidget->setLayout(vBoxLayout);
+            vBoxLayout->addWidget(customerDataWidget);
 
-        foreach (QJsonValue topLevelVal, doc.array()) {
-            QJsonObject topLevelObject = topLevelVal.toObject();
-            qDebug() << topLevelObject;
+            foreach (QJsonValue topLevelVal, doc.array()) {
+                QJsonObject topLevelObject = topLevelVal.toObject();
+                qDebug() << topLevelObject;
+            }
         }
     } else {
         qDebug() << "Error while loading Customers.";

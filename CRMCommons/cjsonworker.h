@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QNetworkReply>
+#include <QTreeWidgetItem>
+
 #include "capiurls.h"
 #include "cglobalobject.h"
 
