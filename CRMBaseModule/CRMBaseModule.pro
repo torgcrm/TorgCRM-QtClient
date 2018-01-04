@@ -17,7 +17,8 @@ SOURCES += \
     taskdialog.cpp \
     customersearchdialog.cpp \
     customerdialog.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    customerdatawidget.cpp
 
 HEADERS += \
         torgcrmmain.h \
@@ -25,7 +26,8 @@ HEADERS += \
     taskdialog.h \
     customersearchdialog.h \
     customerdialog.h \
-    aboutdialog.h
+    aboutdialog.h \
+    customerdatawidget.h
 
 FORMS += \
         torgcrmmain.ui \
@@ -33,7 +35,8 @@ FORMS += \
     taskdialog.ui \
     customersearchdialog.ui \
     customerdialog.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    customerdatawidget.ui
 
 RESOURCES += \
     icons.qrc

@@ -45,11 +45,12 @@ private:
     CJsonWorker *cJsonWorker;
 
     void openTaskDialog();
-    bool checkExistingTab(int index, CTreeItem *cTreeItem);
-
+    bool checkExistingTab(int index, CTreeItem *cTreeItem);    
+    int getTabByName(QString tabName);
 private slots:
     void on_mainMenu_itemClicked(QTreeWidgetItem *item, int index);
     void onMainMenuDataLoadFinished(QNetworkReply *reply);
+    void onCustomersLoadFinished(QNetworkReply *reply);
     void on_actionClose_triggered();
     void on_actionAdd_New_triggered();
     void on_actionSearch_triggered();

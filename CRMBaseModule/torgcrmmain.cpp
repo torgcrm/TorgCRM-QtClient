@@ -8,12 +8,16 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QTableView>
+#include <QLabel>
+#include <QVBoxLayout>
 
 #include "ctreeitem.h"
 #include "customerdialog.h"
 #include "customersearchdialog.h"
 #include "aboutdialog.h"
 #include "taskdialog.h"
+#include "customerdatawidget.h"
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),
@@ -25,6 +29,7 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
     cJsonWorker = CJsonWorker::getInstance();
 
     connect(cJsonWorker, &CJsonWorker::onMenuLoadFinished, this, &TorgCRMMain::onMainMenuDataLoadFinished);
+    connect(cJsonWorker, &CJsonWorker::onCustomersLoadFinished, this, &TorgCRMMain::onCustomersLoadFinished);
     cJsonWorker->getAllMenus(); // load menu from server
 
     ui->leftMenuFrame->layout()->setAlignment(Qt::AlignTop);
@@ -56,6 +61,18 @@ bool TorgCRMMain::checkExistingTab(int index, CTreeItem *cTreeItem)
     return false;
 }
 
+int TorgCRMMain::getTabByName(QString tabName)
+{
+    int tabsCount = ui->mainCRMTabWidget->count();
+    for (int i = 0; i < tabsCount; i ++) {
+        QString tabText = ui->mainCRMTabWidget->tabText(i).replace("&", "");
+        if (tabText.compare(tabName) == 0) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
 {
     CTreeItem *cTreeItem = static_cast<CTreeItem *>(item);
@@ -66,6 +83,7 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
             int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
             ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
         }
+        cJsonWorker->getAllCustomers();
     }
 
     /** Tasks **/
@@ -91,10 +109,9 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
 void TorgCRMMain::onMainMenuDataLoadFinished(QNetworkReply *reply)
 {
     if (!reply->error()) {
-        qDebug() << "TorgCRMForm initializing menu...";
+        qDebug() << "TorgCRMForm menu was loaded...";
 
         QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-        qDebug() << doc.isArray();
         foreach (QJsonValue topLevelVal, doc.array()) {
             QJsonObject topLevelObject = topLevelVal.toObject();
             CTreeItem *menuTopLevelItem = new CTreeItem(topLevelObject.value("code").toString(),
@@ -110,6 +127,28 @@ void TorgCRMMain::onMainMenuDataLoadFinished(QNetworkReply *reply)
         }
     } else {
         qDebug() << "Error while loading Menu.";
+    }
+}
+
+void TorgCRMMain::onCustomersLoadFinished(QNetworkReply *reply)
+{
+    if (!reply->error()) {
+        qDebug() << "TorgCRMForm customers was loaded...";
+
+        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        QFrame *tabWidget = qobject_cast<QFrame *>(ui->mainCRMTabWidget->widget(this->getTabByName("Customers")));
+        CustomerDataWidget *customerDataWidget = new CustomerDataWidget(tabWidget);
+
+        QVBoxLayout *vBoxLayout = new QVBoxLayout;
+        tabWidget->setLayout(vBoxLayout);
+        vBoxLayout->addWidget(customerDataWidget);
+
+        foreach (QJsonValue topLevelVal, doc.array()) {
+            QJsonObject topLevelObject = topLevelVal.toObject();
+            qDebug() << topLevelObject;
+        }
+    } else {
+        qDebug() << "Error while loading Customers.";
     }
 }
 

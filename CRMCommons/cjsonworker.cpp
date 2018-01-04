@@ -53,6 +53,23 @@ void CJsonWorker::getAllMenus()
     networkManager->get(request);
 }
 
+void CJsonWorker::getAllCustomers()
+{
+    globalObject = GLobalObject::getInstance();
+
+    QNetworkAccessManager *networkManager = new QNetworkAccessManager();
+    connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onCustomersDataLoaded);
+
+    QString localUrl = API_URL;
+    localUrl.append(CUSTOMERS_URL);
+
+    QUrl localQUrl(localUrl);
+    QNetworkRequest request(localQUrl);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
+    networkManager->get(request);
+}
+
 QString CJsonWorker::getTokenBearer()
 {
     QString token(BEARER_PART);
@@ -70,4 +87,10 @@ void CJsonWorker::onMenuDataLoaded(QNetworkReply *reply)
 {
     qDebug() << "Menu was loaded from server...";
     emit onMenuLoadFinished(reply);
+}
+
+void CJsonWorker::onCustomersDataLoaded(QNetworkReply *reply)
+{
+    qDebug() << "Customers was loaded from server...";
+    emit onCustomersLoadFinished(reply);
 }

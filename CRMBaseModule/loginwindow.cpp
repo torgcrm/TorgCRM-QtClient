@@ -20,6 +20,7 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->logoLabel->setScaledContents(true);
     ui->logoLabel->setPixmap(QPixmap(":/icons/Icons/logo.png"));
+    this->setFixedSize(469, 191);
 
     worker = CJsonWorker::getInstance();
     connect(worker, &CJsonWorker::onAuthenticateFinished, this, &LoginWindow::onAuthenticateFinished);
