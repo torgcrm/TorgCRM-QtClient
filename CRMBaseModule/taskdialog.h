@@ -1,5 +1,5 @@
-#ifndef TASK_H
-#define TASK_H
+#ifndef TASKDIALOG_H
+#define TASKDIALOG_H
 
 #include <QDialog>
 
@@ -19,4 +19,4 @@ private:
     Ui::TaskDialog *ui;
 };
 
-#endif // TASK_H
+#endif // TASKDIALOG_H

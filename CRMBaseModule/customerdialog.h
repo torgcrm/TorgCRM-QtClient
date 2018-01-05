@@ -1,5 +1,5 @@
-#ifndef CUSTOMER_H
-#define CUSTOMER_H
+#ifndef CUSTOMERDIALOG_H
+#define CUSTOMERDIALOG_H
 
 #include <QDialog>
 
@@ -19,4 +19,4 @@ private:
     Ui::CustomerDialog *ui;
 };
 
-#endif // CUSTOMER_H
+#endif // CUSTOMERDIALOG_H

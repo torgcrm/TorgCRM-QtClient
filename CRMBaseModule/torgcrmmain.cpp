@@ -13,11 +13,11 @@
 #include <QVBoxLayout>
 
 #include "ctreeitem.h"
-#include "customerdialog.h"
 #include "customersearchdialog.h"
 #include "aboutdialog.h"
 #include "taskdialog.h"
 #include "customerdatawidget.h"
+#include "customerdialog.h"
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),

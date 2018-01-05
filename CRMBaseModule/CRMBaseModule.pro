@@ -7,8 +7,8 @@ TEMPLATE = app
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-INCLUDEPATH += ../CRMCommons
 INCLUDEPATH += ../CRMModels
+INCLUDEPATH += ../CRMCommons
 
 LIBS += -L$$OUT_PWD/../CRMCommons -lCRMCommons
 LIBS += -L$$OUT_PWD/../CRMModels -lCRMModels

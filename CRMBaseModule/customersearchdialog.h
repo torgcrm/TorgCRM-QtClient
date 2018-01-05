@@ -1,5 +1,5 @@
-#ifndef CUSTOMERSEARCH_H
-#define CUSTOMERSEARCH_H
+#ifndef CUSTOMERSEARCHDIALOG_H
+#define CUSTOMERSEARCHDIALOG_H
 
 #include <QDialog>
 
@@ -19,4 +19,4 @@ private:
     Ui::CustomerSearchDialog *ui;
 };
 
-#endif // CUSTOMERSEARCH_H
+#endif // CUSTOMERSEARCHDIALOG_H

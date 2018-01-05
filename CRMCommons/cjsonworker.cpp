@@ -5,6 +5,7 @@
 #include <QtNetwork/QNetworkReply>
 
 #include "cjsonworker.h"
+#include "customer.h"
 
 CJsonWorker::CJsonWorker()
 {
@@ -41,8 +42,6 @@ void CJsonWorker::authenticate(QString login, QString password)
 
 void CJsonWorker::getAllMenus()
 {
-    globalObject = GLobalObject::getInstance();
-
     QString menuUrl = API_URL;
     menuUrl.append(MENUS_URL);
     QUrl menuQUrl(menuUrl);
@@ -57,8 +56,6 @@ void CJsonWorker::getAllMenus()
 
 void CJsonWorker::getAllCustomers()
 {
-    globalObject = GLobalObject::getInstance();
-
     QString localUrl = API_URL;
     localUrl.append(CUSTOMERS_URL);
     QUrl localQUrl(localUrl);
@@ -69,6 +66,22 @@ void CJsonWorker::getAllCustomers()
     request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
 
     networkAccessManager->get(request);
+}
+
+void CJsonWorker::saveCustomer(CModels::Customer *customer)
+{
+    QString localUrl = API_URL;
+    localUrl.append(SAVE_CUSTOMER);
+    QUrl localQUrl(localUrl);
+
+    QNetworkRequest request(localQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::SAVE_CUSTOMER);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QJsonObject jsonObject;
+    jsonObject.insert("fullName", customer->getFullName());
+
+    networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
 QString CJsonWorker::getTokenBearer()

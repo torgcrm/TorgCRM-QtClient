@@ -8,6 +8,7 @@
 
 #include "capiurls.h"
 #include "cglobalobject.h"
+#include "customer.h"
 
 #define AUTHORIZATION_HEADER "Authorization"
 #define BEARER_PART "Bearer "
@@ -36,7 +37,7 @@ public:
      * @brief getAllCustomers return JSON object with customers from JHipster
      */
     void getAllCustomers();
-    void saveCustomer();
+    void saveCustomer(CModels::Customer *customer);
 private:
     const QString API_URL = "http://localhost:8080";
     GLobalObject *globalObject = GLobalObject::getInstance();
