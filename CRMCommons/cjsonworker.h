@@ -36,6 +36,7 @@ public:
      * @brief getAllCustomers return JSON object with customers from JHipster
      */
     void getAllCustomers();
+    void saveCustomer();
 private:
     const QString API_URL = "http://localhost:8080";
     GLobalObject *globalObject = GLobalObject::getInstance();

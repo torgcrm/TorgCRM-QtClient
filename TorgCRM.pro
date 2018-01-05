@@ -1,10 +1,12 @@
 TEMPLATE = subdirs
 
-SUBDIRS = CRMCommons \
+SUBDIRS = CRMModels \
+        CRMCommons \
         CRMBaseModule \
-        Tests
+        Tests \
 
-CRMBaseModule.depends = CRMCommons
+CRMBaseModule.depends = CRMCommons CRMModels
+CRMCommons.depends = CRMModels
 
 CONFIG += ordered
 

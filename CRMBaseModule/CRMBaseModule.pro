@@ -8,7 +8,10 @@ TEMPLATE = app
 DEFINES += QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += ../CRMCommons
+INCLUDEPATH += ../CRMModels
+
 LIBS += -L$$OUT_PWD/../CRMCommons -lCRMCommons
+LIBS += -L$$OUT_PWD/../CRMModels -lCRMModels
 
 SOURCES += \
         main.cpp \
