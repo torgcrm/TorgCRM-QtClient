@@ -4,7 +4,6 @@
 #include "torgcrmmain.h"
 #include <QDebug>
 #include <QPixmap>
-#include <QNetworkAccessManager>
 #include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>

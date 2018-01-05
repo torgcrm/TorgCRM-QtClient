@@ -2,10 +2,15 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QtNetwork/QNetworkRequest>
-#include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
 #include "cjsonworker.h"
+
+CJsonWorker::CJsonWorker()
+{
+    networkAccessManager = new QNetworkAccessManager();
+    connect(networkAccessManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onDataLoaded);
+}
 
 CJsonWorker *CJsonWorker::getInstance()
 {
@@ -18,56 +23,52 @@ CJsonWorker *CJsonWorker::getInstance()
 void CJsonWorker::authenticate(QString login, QString password)
 {
     qDebug() << "Trying to authenticate...";
-    QNetworkAccessManager *networkManager = new QNetworkAccessManager();
-    connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onAuthenticateDataLoaded);
 
     QString loginUrl = API_URL;
-
     loginUrl.append(AUTHENTICATE_URL);
 
     QUrl loginQUrl(loginUrl);
     QNetworkRequest request(loginQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::AUTHENTICATION);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QJsonObject jsonObject;
     jsonObject.insert("username", login);
     jsonObject.insert("password", password);
 
-    networkManager->post(request, QJsonDocument(jsonObject).toJson());
+    networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
 void CJsonWorker::getAllMenus()
 {
     globalObject = GLobalObject::getInstance();
 
-    QNetworkAccessManager *networkManager = new QNetworkAccessManager();
-    connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onMenuDataLoaded);
-
     QString menuUrl = API_URL;
     menuUrl.append(MENUS_URL);
-
     QUrl menuQUrl(menuUrl);
+
     QNetworkRequest request(menuQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::MENUS);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
-    networkManager->get(request);
+
+    networkAccessManager->get(request);
 }
 
 void CJsonWorker::getAllCustomers()
 {
     globalObject = GLobalObject::getInstance();
 
-    QNetworkAccessManager *networkManager = new QNetworkAccessManager();
-    connect(networkManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onCustomersDataLoaded);
-
     QString localUrl = API_URL;
     localUrl.append(CUSTOMERS_URL);
-
     QUrl localQUrl(localUrl);
+
     QNetworkRequest request(localQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::CUSTOMERS);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
-    networkManager->get(request);
+
+    networkAccessManager->get(request);
 }
 
 QString CJsonWorker::getTokenBearer()
@@ -75,6 +76,27 @@ QString CJsonWorker::getTokenBearer()
     QString token(BEARER_PART);
     token.append(globalObject->getToken());
     return token;
+}
+
+void CJsonWorker::onDataLoaded(QNetworkReply *reply) {
+    CRequestType requestType = static_cast<CRequestType>
+            (reply->request().attribute(QNetworkRequest::User).toInt());
+
+    switch (requestType)
+    {
+        case CRequestType::AUTHENTICATION:
+            onAuthenticateDataLoaded(reply);
+            break;
+        case CRequestType::MENUS:
+            onMenuDataLoaded(reply);
+            break;
+        case CRequestType::CUSTOMERS:
+            onCustomersDataLoaded(reply);
+            break;
+        default:
+            break;
+    }
+    reply->deleteLater();
 }
 
 void CJsonWorker::onAuthenticateDataLoaded(QNetworkReply *reply)

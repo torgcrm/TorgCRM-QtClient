@@ -4,12 +4,14 @@
 #include <QObject>
 #include <QNetworkReply>
 #include <QTreeWidgetItem>
+#include <QNetworkAccessManager>
 
 #include "capiurls.h"
 #include "cglobalobject.h"
 
 #define AUTHORIZATION_HEADER "Authorization"
 #define BEARER_PART "Bearer "
+#define TYPE_ATTRIBUTE = "RequestType"
 
 /**
  * @brief The CJsonWorker class helper to work with REST api
@@ -18,6 +20,7 @@ class CJsonWorker : public QObject
 {
     Q_OBJECT
 public:
+    CJsonWorker();
     static CJsonWorker *getInstance();
     /**
      * @brief authenticate this method send data to /api/authenticate login and password
@@ -37,7 +40,9 @@ private:
     const QString API_URL = "http://localhost:8080";
     GLobalObject *globalObject = GLobalObject::getInstance();
     QString getTokenBearer();
+    QNetworkAccessManager *networkAccessManager;
 private slots:
+    void onDataLoaded(QNetworkReply *reply);
     void onAuthenticateDataLoaded(QNetworkReply *reply);
     void onMenuDataLoaded(QNetworkReply *reply);
     void onCustomersDataLoaded(QNetworkReply *reply);
