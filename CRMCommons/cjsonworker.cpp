@@ -79,7 +79,14 @@ void CJsonWorker::saveCustomer(CModels::Customer *customer)
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QJsonObject jsonObject;
-    jsonObject.insert("fullName", customer->getFullName());
+    jsonObject.insert(JSON_CSTMR_FULLNAME, customer->getFullName());
+    jsonObject.insert(JSON_CSTMR_COMMENT, customer->getComment());
+    jsonObject.insert(JSON_CSTMR_EMAIL, customer->getEmail());
+    jsonObject.insert(JSON_CSTMR_FAX, customer->getFax());
+    jsonObject.insert(JSON_CSTMR_ID, customer->getId());
+    jsonObject.insert(JSON_CSTMR_PHONE, customer->getPhone());
+    jsonObject.insert(JSON_CSTMR_SOURCE, customer->getSource());
+    jsonObject.insert(JSON_CSTMR_TYPEID, customer->getTypeId());
 
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }

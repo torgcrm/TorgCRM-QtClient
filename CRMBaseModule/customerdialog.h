@@ -15,6 +15,11 @@ public:
     explicit CustomerDialog(QWidget *parent = 0);
     ~CustomerDialog();
 
+private slots:
+    void on_bottomButtons_accepted();
+
+    void on_bottomButtons_rejected();
+
 private:
     Ui::CustomerDialog *ui;
 };

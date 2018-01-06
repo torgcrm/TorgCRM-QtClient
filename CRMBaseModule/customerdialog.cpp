@@ -14,3 +14,13 @@ CustomerDialog::~CustomerDialog()
 {
     delete ui;
 }
+
+void CustomerDialog::on_bottomButtons_accepted()
+{
+
+}
+
+void CustomerDialog::on_bottomButtons_rejected()
+{
+    this->close();
+}

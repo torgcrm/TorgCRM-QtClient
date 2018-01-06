@@ -5,8 +5,17 @@
 
 #include "genericmodel.h"
 
+#define JSON_CSTMR_FULLNAME   "fullname"
+#define JSON_CSTMR_EMAIL      "email"
+#define JSON_CSTMR_COMMENT    "comment"
+#define JSON_CSTMR_FAX        "fax"
+#define JSON_CSTMR_ID         "id"
+#define JSON_CSTMR_PHONE      "phoneNumber"
+#define JSON_CSTMR_SOURCE     "source"
+#define JSON_CSTMR_TYPEID     "typeId"
+
 namespace CModels {
-    class Customer : GenericModel {
+    class Customer : public GenericModel {
     public:
         QString getFullName() const;
         void setFullName(const QString &value);
@@ -26,6 +35,9 @@ namespace CModels {
         QString getComment() const;
         void setComment(const QString &value);
 
+        int getTypeId() const;
+        void setTypeId(int value);
+
     private:
         QString fullName;
         QString phone;
@@ -33,6 +45,7 @@ namespace CModels {
         QString fax;
         QString source;
         QString comment;
+        int typeId;
     };
 }
 

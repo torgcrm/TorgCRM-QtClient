@@ -61,3 +61,13 @@ void Customer::setComment(const QString &value)
 {
 comment = value;
 }
+
+int Customer::getTypeId() const
+{
+    return typeId;
+}
+
+void Customer::setTypeId(int value)
+{
+    typeId = value;
+}
