@@ -28,7 +28,8 @@ SOURCES += \
 
 HEADERS += \
     customer.h \
-    genericmodel.h
+    genericmodel.h \
+    dialogmodes.h
 
 unix {
     target.path = /usr/lib

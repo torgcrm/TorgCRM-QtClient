@@ -1,5 +1,6 @@
-#include "loginwindow.h"
 #include <QApplication>
+
+#include "loginwindow.h"
 
 int main(int argc, char *argv[])
 {

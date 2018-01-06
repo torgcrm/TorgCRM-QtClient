@@ -140,6 +140,9 @@
        <property name="text">
         <string>Full name:</string>
        </property>
+       <property name="buddy">
+        <cstring>customerFullNameInput</cstring>
+       </property>
       </widget>
      </item>
      <item row="1" column="1">
@@ -149,6 +152,9 @@
       <widget class="QLabel" name="customerPhoneNumberLabel">
        <property name="text">
         <string>Phone number:</string>
+       </property>
+       <property name="buddy">
+        <cstring>customerPhoneNumberInput</cstring>
        </property>
       </widget>
      </item>
@@ -160,6 +166,9 @@
        <property name="text">
         <string>Email:</string>
        </property>
+       <property name="buddy">
+        <cstring>customerEmailInput</cstring>
+       </property>
       </widget>
      </item>
      <item row="3" column="1">
@@ -169,6 +178,9 @@
       <widget class="QLabel" name="customerFaxLabel">
        <property name="text">
         <string>Fax:</string>
+       </property>
+       <property name="buddy">
+        <cstring>customerFaxInput</cstring>
        </property>
       </widget>
      </item>
@@ -180,6 +192,9 @@
        <property name="text">
         <string>Source:</string>
        </property>
+       <property name="buddy">
+        <cstring>customerSourceInput</cstring>
+       </property>
       </widget>
      </item>
      <item row="5" column="1">
@@ -190,6 +205,9 @@
        <property name="text">
         <string>Customer type:</string>
        </property>
+       <property name="buddy">
+        <cstring>customerTypeCombo</cstring>
+       </property>
       </widget>
      </item>
      <item row="0" column="1">
@@ -199,6 +217,9 @@
       <widget class="QLabel" name="customerCommentsLabel">
        <property name="text">
         <string>Comments</string>
+       </property>
+       <property name="buddy">
+        <cstring>customerCommentsTextInput</cstring>
        </property>
       </widget>
      </item>
@@ -282,6 +303,55 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>customerTypeCombo</tabstop>
+  <tabstop>customerFullNameInput</tabstop>
+  <tabstop>customerPhoneNumberInput</tabstop>
+  <tabstop>customerEmailInput</tabstop>
+  <tabstop>customerFaxInput</tabstop>
+  <tabstop>customerSourceInput</tabstop>
+  <tabstop>customerCommentsTextInput</tabstop>
+  <tabstop>uploadPhotoBtn</tabstop>
+  <tabstop>shoMoreStatisticsBtn</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>bottomButtons</sender>
+   <signal>accepted()</signal>
+   <receiver>CustomerDialog</receiver>
+   <slot>dialogAccepted()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>669</x>
+     <y>577</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bottomButtons</sender>
+   <signal>rejected()</signal>
+   <receiver>CustomerDialog</receiver>
+   <slot>dialogRejected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>669</x>
+     <y>577</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>dialogAccepted()</slot>
+  <slot>dialogRejected()</slot>
+ </slots>
 </ui>

@@ -13,15 +13,19 @@ class CustomerDialog : public QDialog
 
 public:
     explicit CustomerDialog(QWidget *parent = 0);
+    explicit CustomerDialog(int mode, QWidget *parent = 0);
     ~CustomerDialog();
 
-private slots:
-    void on_bottomButtons_accepted();
+protected:
+    void setup();
 
-    void on_bottomButtons_rejected();
+private slots:
+    void dialogAccepted();
+    void dialogRejected();
 
 private:
     Ui::CustomerDialog *ui;
+    int mode;
 };
 
 #endif // CUSTOMERDIALOG_H

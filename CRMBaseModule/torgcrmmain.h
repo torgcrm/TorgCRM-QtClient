@@ -10,6 +10,7 @@
 #include "cglobalobject.h"
 #include "cjsonworker.h"
 #include "ctreeitem.h"
+#include "dialogmodes.h"
 
 #define CUSTOMERS_MENU "customers"
 #define TASKS_MENU "tasks"
