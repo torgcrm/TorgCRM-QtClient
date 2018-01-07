@@ -143,16 +143,11 @@ void TorgCRMMain::onCustomersLoadFinished(QNetworkReply *reply)
         QFrame *tabWidget = qobject_cast<QFrame *>(ui->mainCRMTabWidget->widget(this->getTabByName("Customers")));
         if (tabWidget->children().size() < 1) {
             QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-            CustomerDataWidget *customerDataWidget = new CustomerDataWidget(tabWidget);
+            CustomerDataWidget *customerDataWidget = new CustomerDataWidget(tabWidget, &doc);
 
             QVBoxLayout *vBoxLayout = new QVBoxLayout;
             tabWidget->setLayout(vBoxLayout);
             vBoxLayout->addWidget(customerDataWidget);
-
-            foreach (QJsonValue topLevelVal, doc.array()) {
-                QJsonObject topLevelObject = topLevelVal.toObject();
-                qDebug() << topLevelObject;
-            }
         }
     } else {
         qDebug() << "Error while loading Customers.";

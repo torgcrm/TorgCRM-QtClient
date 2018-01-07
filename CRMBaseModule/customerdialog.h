@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "cjsonworker.h"
+
 namespace Ui {
 class CustomerDialog;
 }
@@ -26,6 +28,7 @@ private slots:
 private:
     Ui::CustomerDialog *ui;
     int mode;
+    CJsonWorker *cJsonWorker;
 };
 
 #endif // CUSTOMERDIALOG_H

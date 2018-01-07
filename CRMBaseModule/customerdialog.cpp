@@ -9,6 +9,7 @@ void CustomerDialog::setup()
     ui->setupUi(this);
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
     this->setFixedSize(QSize(800, 600));
+    cJsonWorker = CJsonWorker::getInstance();
 }
 
 CustomerDialog::CustomerDialog(QWidget *parent) :
@@ -42,6 +43,8 @@ void CustomerDialog::dialogAccepted()
     customer.setFax(ui->customerFaxInput->text());
     customer.setSource(ui->customerSourceInput->text());
     customer.setComment(ui->customerCommentsTextInput->toPlainText());
+
+    cJsonWorker->saveCustomer(&customer);
 }
 
 void CustomerDialog::dialogRejected()
