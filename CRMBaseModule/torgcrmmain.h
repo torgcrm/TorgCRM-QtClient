@@ -15,6 +15,7 @@
 #define CUSTOMERS_MENU "customers"
 #define TASKS_MENU "tasks"
 #define DASHBOARD_MENU "dashboard"
+#define ORDERS_MENU "orders"
 
 namespace Ui {
 class TorgCRMMain;

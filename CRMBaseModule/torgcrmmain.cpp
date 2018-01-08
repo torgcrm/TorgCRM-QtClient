@@ -110,6 +110,17 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
         }
     }
 
+    /** Orders **/
+    if (QString::compare(ORDERS_MENU, cTreeItem->getItemCode(), Qt::CaseInsensitive) == 0) {
+        QFrame *frame = new QFrame();
+        if (!checkExistingTab(index, cTreeItem)) {
+            int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
+            ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+        } else {
+            ui->mainCRMTabWidget->setCurrentIndex(this->getTabByName(cTreeItem->text(index)));
+        }
+    }
+
 }
 
 void TorgCRMMain::onMainMenuDataLoadFinished(QNetworkReply *reply)
