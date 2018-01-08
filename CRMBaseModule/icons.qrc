@@ -8,5 +8,6 @@
         <file>Icons/search-deep.svg</file>
         <file>Icons/customers.ico</file>
         <file>Icons/logo.png</file>
+        <file>Icons/orders.svg</file>
     </qresource>
 </RCC>
