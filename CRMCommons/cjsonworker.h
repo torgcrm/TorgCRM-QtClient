@@ -37,7 +37,12 @@ public:
      * @brief getAllCustomers return JSON object with customers from JHipster
      */
     void getAllCustomers();
+    /**
+     * @brief saveCustomer post JSON object to JHipster server
+     * @param customer Customer model
+     */
     void saveCustomer(CModels::Customer *customer);
+    void getAllTasks();
 private:
     const QString API_URL = "http://localhost:8080";
     GLobalObject *globalObject = GLobalObject::getInstance();
@@ -48,6 +53,7 @@ private slots:
     void onAuthenticateDataLoaded(QNetworkReply *reply);
     void onMenuDataLoaded(QNetworkReply *reply);
     void onCustomersDataLoaded(QNetworkReply *reply);
+    void onTasksDataLoaded(QNetworkReply *reply);
 signals:
     /**
      * @brief onAuthenticateFinished this signal should rise when the data sent to the
@@ -65,6 +71,11 @@ signals:
      * @param reply network reply with JSON
      */
     void onCustomersLoadFinished(QNetworkReply *reply);
+    /**
+     * @brief onTasksLoadFinished this signal rise when the server return JSON with task list
+     * @param reply network reply with JSON
+     */
+    void onTasksLoadFinished(QNetworkReply *reply);
 };
 
 static CJsonWorker *_cJsonWorker = NULL;

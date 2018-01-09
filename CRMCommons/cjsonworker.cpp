@@ -93,6 +93,20 @@ void CJsonWorker::saveCustomer(CModels::Customer *customer)
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
+void CJsonWorker::getAllTasks()
+{
+    QString localUrl = API_URL;
+    localUrl.append(TASKS_URL);
+    QUrl localQUrl(localUrl);
+
+    QNetworkRequest request(localQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::TASKS);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
+
+    networkAccessManager->get(request);
+}
+
 QString CJsonWorker::getTokenBearer()
 {
     QString token(BEARER_PART);
@@ -114,6 +128,9 @@ void CJsonWorker::onDataLoaded(QNetworkReply *reply) {
             break;
         case CRequestType::CUSTOMERS:
             onCustomersDataLoaded(reply);
+            break;
+        case CRequestType::TASKS:
+            onTasksDataLoaded(reply);
             break;
         default:
             break;
@@ -137,4 +154,10 @@ void CJsonWorker::onCustomersDataLoaded(QNetworkReply *reply)
 {
     qDebug() << "Customers was loaded from server...";
     emit onCustomersLoadFinished(reply);
+}
+
+void CJsonWorker::onTasksDataLoaded(QNetworkReply *reply)
+{
+    qDebug() << "Customers was loaded from server...";
+    emit onTasksLoadFinished(reply);
 }

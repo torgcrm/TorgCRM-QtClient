@@ -30,6 +30,8 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
 
     connect(cJsonWorker, &CJsonWorker::onMenuLoadFinished, this, &TorgCRMMain::onMainMenuDataLoadFinished);
     connect(cJsonWorker, &CJsonWorker::onCustomersLoadFinished, this, &TorgCRMMain::onCustomersLoadFinished);
+    connect(cJsonWorker, &CJsonWorker::onTasksLoadFinished, this, &TorgCRMMain::onCustomersLoadFinished);
+
     cJsonWorker->getAllMenus(); // load menu from server
 
     ui->leftMenuFrame->layout()->setAlignment(Qt::AlignTop);
@@ -94,6 +96,7 @@ void TorgCRMMain::on_mainMenu_itemClicked(QTreeWidgetItem *item, int index)
         if (!checkExistingTab(index, cTreeItem)) {
             int tabIndex = ui->mainCRMTabWidget->addTab(frame, cTreeItem->text(index));
             ui->mainCRMTabWidget->setCurrentIndex(tabIndex);
+            cJsonWorker->getAllTasks();
         } else {
             ui->mainCRMTabWidget->setCurrentIndex(this->getTabByName(cTreeItem->text(index)));
         }
@@ -159,6 +162,18 @@ void TorgCRMMain::onCustomersLoadFinished(QNetworkReply *reply)
             QVBoxLayout *vBoxLayout = new QVBoxLayout;
             tabWidget->setLayout(vBoxLayout);
             vBoxLayout->addWidget(customerDataWidget);
+        }
+    } else {
+        qDebug() << "Error while loading Customers.";
+    }
+}
+
+void TorgCRMMain::onTasksLoadFinished(QNetworkReply *reply) {
+    if (!reply->error()) {
+        qDebug() << "TorgCRMForm tasks was loaded...";
+        QFrame *tabWidget = qobject_cast<QFrame *>(ui->mainCRMTabWidget->widget(this->getTabByName("Tasks")));
+        if (tabWidget->children().size() < 1) {
+            QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
         }
     } else {
         qDebug() << "Error while loading Customers.";

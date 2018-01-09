@@ -62,6 +62,7 @@ private slots:
     void on_actionNew_Email_triggered();
     void on_actionCall_Task_triggered();
     void on_mainCRMTabWidget_tabCloseRequested(int index);
+    void onTasksLoadFinished(QNetworkReply *reply);
 };
 
 #endif // TORGCRMMAIN_H
