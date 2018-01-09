@@ -161,6 +161,9 @@ void TorgCRMMain::onCustomersLoadFinished(QNetworkReply *reply)
 
             QVBoxLayout *vBoxLayout = new QVBoxLayout;
             tabWidget->setLayout(vBoxLayout);
+            vBoxLayout->setMargin(0);
+            vBoxLayout->setSpacing(0);
+            vBoxLayout->setContentsMargins(0,0,0,0);
             vBoxLayout->addWidget(customerDataWidget);
         }
     } else {
