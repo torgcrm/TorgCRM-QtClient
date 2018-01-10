@@ -24,12 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     customer.cpp \
-    genericmodel.cpp
+    genericmodel.cpp \
+    task.cpp
 
 HEADERS += \
     customer.h \
     genericmodel.h \
-    dialogmodes.h
+    dialogmodes.h \
+    task.h
 
 unix {
     target.path = /usr/lib
