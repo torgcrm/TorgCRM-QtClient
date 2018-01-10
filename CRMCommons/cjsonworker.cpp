@@ -95,6 +95,7 @@ void CJsonWorker::saveCustomer(CModels::Customer *customer)
 
 void CJsonWorker::getAllTasks()
 {
+    qDebug() << "Trying to load tasks from server...";
     QString localUrl = API_URL;
     localUrl.append(TASKS_URL);
     QUrl localQUrl(localUrl);
@@ -158,6 +159,6 @@ void CJsonWorker::onCustomersDataLoaded(QNetworkReply *reply)
 
 void CJsonWorker::onTasksDataLoaded(QNetworkReply *reply)
 {
-    qDebug() << "Customers was loaded from server...";
+    qDebug() << "Tasks was loaded from server...";
     emit onTasksLoadFinished(reply);
 }

@@ -30,7 +30,7 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
 
     connect(cJsonWorker, &CJsonWorker::onMenuLoadFinished, this, &TorgCRMMain::onMainMenuDataLoadFinished);
     connect(cJsonWorker, &CJsonWorker::onCustomersLoadFinished, this, &TorgCRMMain::onCustomersLoadFinished);
-    connect(cJsonWorker, &CJsonWorker::onTasksLoadFinished, this, &TorgCRMMain::onCustomersLoadFinished);
+    connect(cJsonWorker, &CJsonWorker::onTasksLoadFinished, this, &TorgCRMMain::onTasksLoadFinished);
 
     cJsonWorker->getAllMenus(); // load menu from server
 

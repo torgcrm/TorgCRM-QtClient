@@ -7,7 +7,7 @@
 #define MENUS_URL "/api/menus"
 #define CUSTOMERS_URL "/api/customers"
 #define SAVE_CUSTOMER_URL "/api/customers"
-#define TASKS_URL "api/tasks"
+#define TASKS_URL "/api/tasks"
 
 enum CRequestType {
     AUTHENTICATION  = 0001,
