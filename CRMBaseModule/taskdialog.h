@@ -2,6 +2,7 @@
 #define TASKDIALOG_H
 
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class TaskDialog;
@@ -17,6 +18,10 @@ public:
 
 private:
     Ui::TaskDialog *ui;
+
+private slots:
+    void onRejectDialog();
+    void onAcceptDialog();
 };
 
 #endif // TASKDIALOG_H

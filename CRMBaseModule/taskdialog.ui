@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Task</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -56,45 +56,54 @@
       <number>12</number>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="taskNameLabel">
        <property name="text">
         <string>Task name</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="taskNameInput"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="startDateLabel">
        <property name="text">
         <string>Start date</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QDateTimeEdit" name="dateTimeEdit">
+      <widget class="QDateTimeEdit" name="startDateInput">
+       <property name="wrapping">
+        <bool>false</bool>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy-MM-dd hh:mm:ss</string>
+       </property>
        <property name="calendarPopup">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="finishDateLabel">
        <property name="text">
         <string>Finish date</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QDateTimeEdit" name="dateTimeEdit_2">
+      <widget class="QDateTimeEdit" name="finishDateInput">
+       <property name="displayFormat">
+        <string>yyyy-MM-dd hh:mm:ss</string>
+       </property>
        <property name="calendarPopup">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="customerLabel">
        <property name="text">
         <string>Customer</string>
        </property>
@@ -131,10 +140,10 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2"/>
+         <widget class="QLineEdit" name="customerInput"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="customerSelectBtn">
           <property name="text">
            <string>Choise</string>
           </property>
@@ -144,7 +153,7 @@
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="managerNameLabel">
        <property name="text">
         <string>Manager</string>
        </property>
@@ -181,10 +190,10 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QLineEdit" name="managerFullName"/>
+         <widget class="QLineEdit" name="managerFullNameInput"/>
         </item>
         <item>
-         <widget class="QPushButton" name="choiseManagerBtn">
+         <widget class="QPushButton" name="selectManagerBtn">
           <property name="text">
            <string>Choise</string>
           </property>
@@ -194,14 +203,14 @@
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="commentsLabel">
        <property name="text">
         <string>Comments</string>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QPlainTextEdit" name="plainTextEdit"/>
+      <widget class="QPlainTextEdit" name="commentsInput"/>
      </item>
     </layout>
    </item>
@@ -218,5 +227,42 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>TaskDialog</receiver>
+   <slot>onRejectDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>234</x>
+     <y>366</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>234</x>
+     <y>191</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>TaskDialog</receiver>
+   <slot>onAcceptDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>234</x>
+     <y>366</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>234</x>
+     <y>191</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onRejectDialog()</slot>
+  <slot>onAcceptDialog()</slot>
+ </slots>
 </ui>

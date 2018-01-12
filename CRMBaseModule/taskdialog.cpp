@@ -12,3 +12,13 @@ TaskDialog::~TaskDialog()
 {
     delete ui;
 }
+
+void TaskDialog::onRejectDialog()
+{
+    this->close();
+}
+
+void TaskDialog::onAcceptDialog()
+{
+    qDebug() << "Creating or updating task";
+}
