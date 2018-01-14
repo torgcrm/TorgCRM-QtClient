@@ -13,6 +13,7 @@
 #define JSON_TASK_MANAGER     "managerId"
 #define JSON_TASK_TITLE       "title"
 #define JSON_TASK_TYPE        "type"
+#define JSON_TASK_CUSTOMER    "customerId"
 
 namespace CRMModels {
     class Task : public GenericModel
@@ -36,6 +37,9 @@ namespace CRMModels {
         int getManagerId() const;
         void setManagerId(int value);
 
+        int getCustomerId() const;
+        void setCustomerId(int value);
+
     private:
         QString title;
         QDateTime beginDate;
@@ -43,6 +47,7 @@ namespace CRMModels {
         QString comment;
         QString type;
         int managerId;
+        int customerId;
     };
 }
 
