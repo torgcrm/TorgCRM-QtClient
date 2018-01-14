@@ -1,5 +1,8 @@
 #include "cglobalobject.h"
-#include <QDebug>
+
+using namespace CRMCommons;
+
+static GLobalObject *_cGlobalObject = NULL;
 
 GLobalObject *GLobalObject::getInstance()
 {

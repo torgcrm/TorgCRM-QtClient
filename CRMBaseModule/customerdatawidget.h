@@ -12,17 +12,19 @@ namespace Ui {
 class CustomerDataWidget;
 }
 
-class CustomerDataWidget : public QWidget
-{
-    Q_OBJECT
+namespace CRMUi {
+    class CustomerDataWidget : public QWidget
+    {
+        Q_OBJECT
 
-public:
-    explicit CustomerDataWidget(QWidget *parent = 0);
-    explicit CustomerDataWidget(QWidget *parent, QJsonDocument *doc);
-    ~CustomerDataWidget();
+    public:
+        explicit CustomerDataWidget(QWidget *parent = 0);
+        explicit CustomerDataWidget(QWidget *parent, QJsonDocument *doc);
+        ~CustomerDataWidget();
 
-private:
-    Ui::CustomerDataWidget *ui;
-};
+    private:
+        Ui::CustomerDataWidget *ui;
+    };
+}
 
 #endif // CUSTOMERDATAWIDGET_H

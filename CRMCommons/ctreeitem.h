@@ -2,7 +2,9 @@
 #define CTREEITEM_H
 
 #include <QTreeWidgetItem>
+#include <QIcon>
 
+namespace CRMCommons {
 class CTreeItem : public QTreeWidgetItem
 {
 private:
@@ -13,5 +15,5 @@ public:
     CTreeItem(QString itemCode, QString title, QString icon);
     QString getItemCode();
 };
-
+}
 #endif // CTREEITEM_H

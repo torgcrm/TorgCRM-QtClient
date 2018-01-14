@@ -1,11 +1,8 @@
-#include <QUrl>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QtNetwork/QNetworkRequest>
-#include <QtNetwork/QNetworkReply>
-
 #include "cjsonworker.h"
-#include "customer.h"
+
+using namespace CRMCommons;
+
+static CJsonWorker *_cJsonWorker = NULL;
 
 CJsonWorker::CJsonWorker()
 {
@@ -106,6 +103,30 @@ void CJsonWorker::getAllTasks()
     request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
 
     networkAccessManager->get(request);
+}
+
+void CJsonWorker::saveTask(CModels::Task *task)
+{
+    qDebug() << "Trying to save task...";
+    QString localUrl = API_URL;
+    localUrl.append(SAVE_TASK_URL);
+    QUrl localQUrl(localUrl);
+
+    QNetworkRequest request(localQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::SAVE_CUSTOMER);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
+
+    QJsonObject jsonObject;
+    jsonObject.insert(JSON_TASK_ID, task->getId());
+    jsonObject.insert(JSON_TASK_BEGINDATE, task->getBeginDate().toString());
+    jsonObject.insert(JSON_TASK_ENDDATE, task->getEndDate().toString());
+    jsonObject.insert(JSON_TASK_COMMENT, task->getComment());
+    jsonObject.insert(JSON_TASK_TYPE, task->getType());
+    jsonObject.insert(JSON_TASK_MANAGER, task->getManagerId());
+
+    qDebug() << "Post Customer JSON object to the server.";
+    networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
 QString CJsonWorker::getTokenBearer()

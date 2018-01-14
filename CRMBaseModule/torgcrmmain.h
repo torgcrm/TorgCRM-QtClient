@@ -6,11 +6,28 @@
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QNetworkReply>
+#include <QDebug>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QIcon>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
+#include <QTableView>
+#include <QLabel>
+#include <QVBoxLayout>
 
 #include "cglobalobject.h"
 #include "cjsonworker.h"
 #include "ctreeitem.h"
 #include "dialogmodes.h"
+#include "customersearchdialog.h"
+#include "aboutdialog.h"
+#include "taskdialog.h"
+#include "customerdatawidget.h"
+#include "customerdialog.h"
+
 
 #define CUSTOMERS_MENU "customers"
 #define TASKS_MENU "tasks"
@@ -21,6 +38,7 @@ namespace Ui {
 class TorgCRMMain;
 }
 
+namespace CRMUi {
 /**
  * @brief The TorgCRMMain class
  */
@@ -43,11 +61,11 @@ public:
     }
 private:
     Ui::TorgCRMMain *ui;
-    GLobalObject *globalObject;
-    CJsonWorker *cJsonWorker;
+    CRMCommons::GLobalObject *globalObject;
+    CRMCommons::CJsonWorker *cJsonWorker;
 
     void openTaskDialog();
-    bool checkExistingTab(int index, CTreeItem *cTreeItem);    
+    bool checkExistingTab(int index, CRMCommons::CTreeItem *cTreeItem);
     int getTabByName(QString tabName);
 private slots:
     void on_mainMenu_itemClicked(QTreeWidgetItem *item, int index);
@@ -64,5 +82,5 @@ private slots:
     void on_mainCRMTabWidget_tabCloseRequested(int index);
     void onTasksLoadFinished(QNetworkReply *reply);
 };
-
+}
 #endif // TORGCRMMAIN_H

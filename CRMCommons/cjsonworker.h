@@ -3,17 +3,23 @@
 
 #include <QObject>
 #include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QTreeWidgetItem>
 #include <QNetworkAccessManager>
+#include <QUrl>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 #include "capiurls.h"
 #include "cglobalobject.h"
 #include "customer.h"
+#include "task.h"
 
 #define AUTHORIZATION_HEADER "Authorization"
 #define BEARER_PART "Bearer "
 #define TYPE_ATTRIBUTE = "RequestType"
 
+namespace CRMCommons {
 /**
  * @brief The CJsonWorker class helper to work with REST api
  */
@@ -38,22 +44,36 @@ public:
      */
     void getAllCustomers();
     /**
-     * @brief saveCustomer post JSON object to JHipster server
+     * @brief saveCustomer post JSON object with Customer to JHipster server
      * @param customer Customer model
      */
     void saveCustomer(CModels::Customer *customer);
+    /**
+     * @brief getAllTasks return JSON object with task list from JHipster server
+     */
     void getAllTasks();
+    /**
+     * @brief saveTask post JSON object with Task to JHsipter server
+     * @param task Task model
+     */
+    void saveTask(CModels::Task *task);
 private:
     const QString API_URL = "http://localhost:8080";
     GLobalObject *globalObject = GLobalObject::getInstance();
     QString getTokenBearer();
     QNetworkAccessManager *networkAccessManager;
-private slots:
-    void onDataLoaded(QNetworkReply *reply);
+
     void onAuthenticateDataLoaded(QNetworkReply *reply);
     void onMenuDataLoaded(QNetworkReply *reply);
     void onCustomersDataLoaded(QNetworkReply *reply);
     void onTasksDataLoaded(QNetworkReply *reply);
+
+private slots:
+    /**
+     * @brief onDataLoaded slot execute when server return QNetworkReply
+     * @param reply response from serverm, in this app it is JSON object.
+     */
+    void onDataLoaded(QNetworkReply *reply);
 signals:
     /**
      * @brief onAuthenticateFinished this signal should rise when the data sent to the
@@ -77,7 +97,5 @@ signals:
      */
     void onTasksLoadFinished(QNetworkReply *reply);
 };
-
-static CJsonWorker *_cJsonWorker = NULL;
-
+}
 #endif // CJSONWORKER_H

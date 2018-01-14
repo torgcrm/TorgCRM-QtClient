@@ -1,8 +1,11 @@
 #ifndef GENERICMODEL_H
 #define GENERICMODEL_H
 
+#include <QObject>
+
 namespace CModels {
-    class GenericModel {
+    class GenericModel : public QObject {
+        Q_OBJECT
     public:
         int getId() const;
         void setId(int value);

@@ -2,13 +2,16 @@
 #define CUSTOMERDIALOG_H
 
 #include <QDialog>
+#include <QDebug>
 
+#include "customer.h"
 #include "cjsonworker.h"
 
 namespace Ui {
 class CustomerDialog;
 }
 
+namespace CRMUi {
 class CustomerDialog : public QDialog
 {
     Q_OBJECT
@@ -28,7 +31,7 @@ private slots:
 private:
     Ui::CustomerDialog *ui;
     int mode;
-    CJsonWorker *cJsonWorker;
+    CRMCommons::CJsonWorker *cJsonWorker;
 };
-
+}
 #endif // CUSTOMERDIALOG_H

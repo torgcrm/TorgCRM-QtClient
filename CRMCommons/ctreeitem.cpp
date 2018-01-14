@@ -1,5 +1,6 @@
 #include "ctreeitem.h"
-#include <QIcon>
+
+using namespace CRMCommons;
 
 CTreeItem::CTreeItem(QString itemCode, QString title) : QTreeWidgetItem()
 {

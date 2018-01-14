@@ -1,12 +1,8 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
-#include "aboutdialog.h"
-#include "torgcrmmain.h"
-#include <QDebug>
-#include <QPixmap>
-#include <QMessageBox>
-#include <QJsonDocument>
-#include <QJsonObject>
+
+using namespace CRMUi;
+using namespace CRMCommons;
 
 LoginWindow::LoginWindow(QWidget *parent) :
     QMainWindow(parent),

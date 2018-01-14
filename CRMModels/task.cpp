@@ -2,7 +2,6 @@
 
 using namespace CModels;
 
-
 QString Task::getTitle() const
 {
     return title;
@@ -51,4 +50,14 @@ QString Task::getType() const
 void Task::setType(const QString &value)
 {
     type = value;
+}
+
+int Task::getManagerId() const
+{
+    return managerId;
+}
+
+void Task::setManagerId(int value)
+{
+    managerId = value;
 }

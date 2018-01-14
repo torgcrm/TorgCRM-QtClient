@@ -2,7 +2,9 @@
 #define GLOBALOBJECT_H
 
 #include <QObject>
+#include <QDebug>
 
+namespace CRMCommons {
 /**
  * @brief The GLobalObject class
  * The global object singleton, that contains any application
@@ -33,7 +35,5 @@ public slots:
      */
     void loginSuccess(QString login, QString token);
 };
-
-static GLobalObject *_cGlobalObject = NULL;
-
+}
 #endif // GLOBALOBJECT_H

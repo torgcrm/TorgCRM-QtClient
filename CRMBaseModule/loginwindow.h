@@ -5,16 +5,24 @@
 #include <QNetworkReply>
 #include <QCloseEvent>
 #include <QMessageBox>
+#include <QDebug>
+#include <QPixmap>
+#include <QMessageBox>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #include "cjsonworker.h"
 #include "aboutdialog.h"
 #include "torgcrmmain.h"
 #include "cglobalobject.h"
+#include "aboutdialog.h"
+#include "torgcrmmain.h"
 
 namespace Ui {
 class LoginWindow;
 }
 
+namespace CRMUi {
 /**
  * @brief The LoginWindow class. Login form
  */
@@ -38,11 +46,11 @@ private:
     Ui::LoginWindow *ui;
     AboutDialog *aboutDialog;
     TorgCRMMain *torgCrmMainWindow;
-    GLobalObject *globalObject;
-    CJsonWorker *worker;
+    CRMCommons::GLobalObject *globalObject;
+    CRMCommons::CJsonWorker *worker;
 
 signals:
     void loginSuccess(QString login, QString token);
 };
-
+}
 #endif // LOGINWINDOW_H

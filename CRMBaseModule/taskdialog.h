@@ -4,24 +4,29 @@
 #include <QDialog>
 #include <QDebug>
 
+#include "task.h"
+#include "cjsonworker.h"
+
 namespace Ui {
 class TaskDialog;
 }
 
-class TaskDialog : public QDialog
-{
-    Q_OBJECT
+namespace CRMUi {
+    class TaskDialog : public QDialog
+    {
+        Q_OBJECT
 
-public:
-    explicit TaskDialog(QWidget *parent = 0);
-    ~TaskDialog();
+    public:
+        explicit TaskDialog(QWidget *parent = 0);
+        ~TaskDialog();
 
-private:
-    Ui::TaskDialog *ui;
+    private:
+        Ui::TaskDialog *ui;
+        CRMCommons::CJsonWorker *cJsonWorker;
 
-private slots:
-    void onRejectDialog();
-    void onAcceptDialog();
-};
-
+    private slots:
+        void onRejectDialog();
+        void onAcceptDialog();
+    };
+}
 #endif // TASKDIALOG_H

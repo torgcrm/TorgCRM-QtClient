@@ -1,8 +1,8 @@
-#include <QDebug>
-
 #include "customerdialog.h"
 #include "ui_customerdialog.h"
-#include "customer.h"
+
+using namespace CRMUi;
+using namespace CRMCommons;
 
 void CustomerDialog::setup()
 {

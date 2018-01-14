@@ -1,23 +1,8 @@
 #include "torgcrmmain.h"
 #include "ui_torgcrmmain.h"
-#include <QDebug>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QIcon>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QJsonValue>
-#include <QTableView>
-#include <QLabel>
-#include <QVBoxLayout>
 
-#include "ctreeitem.h"
-#include "customersearchdialog.h"
-#include "aboutdialog.h"
-#include "taskdialog.h"
-#include "customerdatawidget.h"
-#include "customerdialog.h"
+using namespace CRMUi;
+using namespace CRMCommons;
 
 TorgCRMMain::TorgCRMMain(QWidget *parent) :
     QMainWindow(parent),
