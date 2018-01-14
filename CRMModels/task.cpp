@@ -61,3 +61,13 @@ void Task::setManagerId(int value)
 {
     managerId = value;
 }
+
+int Task::getCustomerId() const
+{
+    return customerId;
+}
+
+void Task::setCustomerId(int value)
+{
+    customerId = value;
+}
