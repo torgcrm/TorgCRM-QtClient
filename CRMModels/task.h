@@ -14,7 +14,7 @@
 #define JSON_TASK_TITLE       "title"
 #define JSON_TASK_TYPE        "type"
 
-namespace CModels {
+namespace CRMModels {
     class Task : public GenericModel
     {
     public:

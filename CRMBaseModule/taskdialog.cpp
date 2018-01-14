@@ -25,7 +25,7 @@ void TaskDialog::onRejectDialog()
 void TaskDialog::onAcceptDialog()
 {
     qDebug() << "Creating or updating task";
-    CModels::Task task;
+    CRMModels::Task task;
     task.setTitle(ui->taskNameInput->text());
     task.setBeginDate(ui->startDateInput->dateTime());
     task.setEndDate(ui->finishDateInput->dateTime());

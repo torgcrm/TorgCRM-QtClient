@@ -65,7 +65,7 @@ void CJsonWorker::getAllCustomers()
     networkAccessManager->get(request);
 }
 
-void CJsonWorker::saveCustomer(CModels::Customer *customer)
+void CJsonWorker::saveCustomer(CRMModels::Customer *customer)
 {
     QString localUrl = API_URL;
     localUrl.append(SAVE_CUSTOMER_URL);
@@ -105,7 +105,7 @@ void CJsonWorker::getAllTasks()
     networkAccessManager->get(request);
 }
 
-void CJsonWorker::saveTask(CModels::Task *task)
+void CJsonWorker::saveTask(CRMModels::Task *task)
 {
     qDebug() << "Trying to save task...";
     QString localUrl = API_URL;
@@ -118,12 +118,13 @@ void CJsonWorker::saveTask(CModels::Task *task)
     request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
 
     QJsonObject jsonObject;
-    jsonObject.insert(JSON_TASK_ID, task->getId());
-    jsonObject.insert(JSON_TASK_BEGINDATE, task->getBeginDate().toString());
-    jsonObject.insert(JSON_TASK_ENDDATE, task->getEndDate().toString());
+//    jsonObject.insert(JSON_TASK_ID, task->getId());
+//    jsonObject.insert(JSON_TASK_BEGINDATE, task->getBeginDate().toString());
+//    jsonObject.insert(JSON_TASK_ENDDATE, task->getEndDate().toString());
     jsonObject.insert(JSON_TASK_COMMENT, task->getComment());
-    jsonObject.insert(JSON_TASK_TYPE, task->getType());
-    jsonObject.insert(JSON_TASK_MANAGER, task->getManagerId());
+//    jsonObject.insert(JSON_TASK_TYPE, task->getType());
+//    jsonObject.insert(JSON_TASK_MANAGER, task->getManagerId());
+    jsonObject.insert(JSON_TASK_TITLE, task->getTitle());
 
     qDebug() << "Post Customer JSON object to the server.";
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());

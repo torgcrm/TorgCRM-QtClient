@@ -1,6 +1,6 @@
 #include "genericmodel.h"
 
-using namespace CModels;
+using namespace CRMModels;
 
 int GenericModel::getId() const
 {

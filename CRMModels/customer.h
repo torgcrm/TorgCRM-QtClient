@@ -14,7 +14,7 @@
 #define JSON_CSTMR_SOURCE     "source"
 #define JSON_CSTMR_TYPEID     "typeId"
 
-namespace CModels {
+namespace CRMModels {
     class Customer : public GenericModel {
     public:
         QString getFullName() const;

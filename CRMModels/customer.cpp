@@ -1,6 +1,6 @@
 #include "customer.h"
 
-using namespace CModels;
+using namespace CRMModels;
 
 QString Customer::getFullName() const
 {

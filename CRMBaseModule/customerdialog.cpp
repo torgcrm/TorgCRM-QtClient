@@ -35,7 +35,7 @@ CustomerDialog::~CustomerDialog()
 void CustomerDialog::dialogAccepted()
 {
     qDebug() << "Trying to save customer";
-    CModels::Customer customer;
+    CRMModels::Customer customer;
     customer.setTypeId(0);
     customer.setFullName(ui->customerFullNameInput->text());
     customer.setPhone(ui->customerPhoneNumberInput->text());

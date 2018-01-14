@@ -47,7 +47,7 @@ public:
      * @brief saveCustomer post JSON object with Customer to JHipster server
      * @param customer Customer model
      */
-    void saveCustomer(CModels::Customer *customer);
+    void saveCustomer(CRMModels::Customer *customer);
     /**
      * @brief getAllTasks return JSON object with task list from JHipster server
      */
@@ -56,7 +56,7 @@ public:
      * @brief saveTask post JSON object with Task to JHsipter server
      * @param task Task model
      */
-    void saveTask(CModels::Task *task);
+    void saveTask(CRMModels::Task *task);
 private:
     const QString API_URL = "http://localhost:8080";
     GLobalObject *globalObject = GLobalObject::getInstance();

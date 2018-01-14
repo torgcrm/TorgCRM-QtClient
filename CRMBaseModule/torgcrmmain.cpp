@@ -162,6 +162,14 @@ void TorgCRMMain::onTasksLoadFinished(QNetworkReply *reply) {
         QFrame *tabWidget = qobject_cast<QFrame *>(ui->mainCRMTabWidget->widget(this->getTabByName("Tasks")));
         if (tabWidget->children().size() < 1) {
             QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+            TaskDataWidget *taskDataWidget = new TaskDataWidget(tabWidget, &doc);
+
+            QVBoxLayout *vBoxLayout = new QVBoxLayout;
+            tabWidget->setLayout(vBoxLayout);
+            vBoxLayout->setMargin(0);
+            vBoxLayout->setSpacing(0);
+            vBoxLayout->setContentsMargins(0,0,0,0);
+            vBoxLayout->addWidget(taskDataWidget);
         }
     } else {
         qDebug() << "Error while loading Customers.";

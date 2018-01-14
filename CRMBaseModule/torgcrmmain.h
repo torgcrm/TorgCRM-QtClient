@@ -27,7 +27,7 @@
 #include "taskdialog.h"
 #include "customerdatawidget.h"
 #include "customerdialog.h"
-
+#include "taskdatawidget.h"
 
 #define CUSTOMERS_MENU "customers"
 #define TASKS_MENU "tasks"

@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-namespace CModels {
+namespace CRMModels {
     class GenericModel : public QObject {
         Q_OBJECT
     public:
