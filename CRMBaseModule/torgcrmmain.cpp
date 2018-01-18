@@ -13,9 +13,12 @@ TorgCRMMain::TorgCRMMain(QWidget *parent) :
     globalObject = GLobalObject::getInstance();
     cJsonWorker = CJsonWorker::getInstance();
 
-    connect(cJsonWorker, &CJsonWorker::onMenuLoadFinished, this, &TorgCRMMain::onMainMenuDataLoadFinished);
-    connect(cJsonWorker, &CJsonWorker::onCustomersLoadFinished, this, &TorgCRMMain::onCustomersLoadFinished);
-    connect(cJsonWorker, &CJsonWorker::onTasksLoadFinished, this, &TorgCRMMain::onTasksLoadFinished);
+    connect(cJsonWorker, SIGNAL(onMenuLoadFinished(QNetworkReply *)),
+            this, SLOT(onMainMenuDataLoadFinished(QNetworkReply *)));
+    connect(cJsonWorker, SIGNAL(onCustomersLoadFinished(QNetworkReply *)),
+            this, SLOT(onCustomersLoadFinished(QNetworkReply *)));
+    connect(cJsonWorker, SIGNAL(onTasksLoadFinished(QNetworkReply *)),
+            this, SLOT(onTasksLoadFinished(QNetworkReply *)));
 
     cJsonWorker->getAllMenus(); // load menu from server
 

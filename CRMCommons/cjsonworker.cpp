@@ -7,7 +7,8 @@ static CJsonWorker *_cJsonWorker = NULL;
 CJsonWorker::CJsonWorker()
 {
     networkAccessManager = new QNetworkAccessManager();
-    connect(networkAccessManager, &QNetworkAccessManager::finished, this, &CJsonWorker::onDataLoaded);
+    connect(networkAccessManager, SIGNAL(finished(QNetworkReply *)),
+            this, SLOT(onDataLoaded(QNetworkReply *)));
 }
 
 CJsonWorker *CJsonWorker::getInstance()
