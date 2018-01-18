@@ -18,7 +18,9 @@ LoginWindow::LoginWindow(QWidget *parent) :
     this->setFixedSize(469, 191);
 
     worker = CJsonWorker::getInstance();
-    connect(worker, &CJsonWorker::onAuthenticateFinished, this, &LoginWindow::onAuthenticateFinished);
+    connect (worker, SIGNAL(onAuthenticateFinished(QNetworkReply*)),
+                           this, SLOT(onAuthenticateFinished(QNetworkReply*)));
+
 }
 
 LoginWindow::~LoginWindow()

@@ -12,6 +12,8 @@ INCLUDEPATH += ../CRMCommons
 
 LIBS += -L$$OUT_PWD/../CRMCommons -lCRMCommons
 LIBS += -L$$OUT_PWD/../CRMModels -lCRMModels
+LIBS += -L$$OUT_PWD/../CRMCommons/debug -lCRMCommons
+LIBS += -L$$OUT_PWD/../CRMModels/debug -lCRMModels
 
 SOURCES += \
         main.cpp \

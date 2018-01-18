@@ -16,6 +16,7 @@ DEFINES += CRMCOMMONS_LIBRARY
 INCLUDEPATH += ../CRMModels
 
 LIBS += -L$$OUT_PWD/../CRMModels -lCRMModels
+LIBS += -L$$OUT_PWD/../CRMModels/debug -lCRMModels
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
