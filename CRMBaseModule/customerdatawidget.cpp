@@ -20,6 +20,14 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
 {
     ui->setupUi(this);
     ui->customerDataTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->customerDataTable->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    connect(ui->customerDataTable, SIGNAL(doubleClicked(QModelIndex)),
+            this, SLOT(onTableDataModelClicked(QModelIndex)));
+
+    connect(ui->customerDataTable, SIGNAL(customContextMenuRequested(QPoint)),
+            this, SLOT(customContextMenuRequested(QPoint)));
+
 
     int i = 0;
     foreach (QJsonValue topLevelVal, doc->array()) {
@@ -43,4 +51,14 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
 CustomerDataWidget::~CustomerDataWidget()
 {
     delete ui;
+}
+
+void CustomerDataWidget::onTableDataModelClicked(const QModelIndex &index)
+{
+    qDebug() << "Click on customer data table...";
+}
+
+void CustomerDataWidget::customContextMenuRequested(const QPoint &point)
+{
+    qDebug() << "Context menu...";
 }

@@ -24,6 +24,9 @@ namespace CRMUi {
 
     private:
         Ui::CustomerDataWidget *ui;
+    public slots:
+        void onTableDataModelClicked(const QModelIndex &index);
+        void customContextMenuRequested(const QPoint &point);
     };
 }
 

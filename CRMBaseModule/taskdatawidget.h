@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QJsonDocument>
+#include <QDebug>
+#include <QModelIndex>
 
 namespace Ui {
 class TaskDataWidget;
@@ -18,6 +20,9 @@ namespace CRMUi {
         ~TaskDataWidget();
     private:
         Ui::TaskDataWidget *ui;
+        void setup();
+    private slots:
+        void onTableDataModelClicked(const QModelIndex &index);
     };
 }
 #endif // TASKDATAWIDGET_H

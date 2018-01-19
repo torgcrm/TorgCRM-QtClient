@@ -179,7 +179,7 @@
        <property name="lineWidth">
         <number>0</number>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
+       <layout class="QHBoxLayout" name="horizontalLayout2" stretch="1,0">
         <property name="spacing">
          <number>0</number>
         </property>
