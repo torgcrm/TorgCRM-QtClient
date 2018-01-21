@@ -14,6 +14,7 @@ TEMPLATE = lib
 DEFINES += CRMCOMMONS_LIBRARY
 
 INCLUDEPATH += ../CRMModels
+CONFIG += c++11
 
 LIBS += -L$$OUT_PWD/../CRMModels -lCRMModels
 LIBS += -L$$OUT_PWD/../CRMModels/debug -lCRMModels
