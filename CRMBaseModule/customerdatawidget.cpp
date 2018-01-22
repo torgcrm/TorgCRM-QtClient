@@ -6,21 +6,14 @@
 
 using namespace CRMUi;
 
-CustomerDataWidget::CustomerDataWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CustomerDataWidget)
-{
-    ui->setupUi(this);
-    ui->customerDataTable->setSelectionBehavior(QAbstractItemView::SelectRows);
-}
-
 CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
-    QWidget(parent),
+    AbstractDataTable(parent),
     ui(new Ui::CustomerDataWidget)
 {
     ui->setupUi(this);
     ui->customerDataTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->customerDataTable->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->customerDataTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     connect(ui->customerDataTable, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(onTableDataModelClicked(QModelIndex)));
@@ -61,4 +54,6 @@ void CustomerDataWidget::onTableDataModelClicked(const QModelIndex &index)
 void CustomerDataWidget::customContextMenuRequested(const QPoint &point)
 {
     qDebug() << "Context menu...";
+    qDebug() << "Selected row index: " << ui->customerDataTable->currentIndex().row();
+    contextMenu->popup(ui->customerDataTable->viewport()->mapToGlobal(point));
 }

@@ -24,7 +24,8 @@ SOURCES += \
     customerdialog.cpp \
     aboutdialog.cpp \
     customerdatawidget.cpp \
-    taskdatawidget.cpp
+    taskdatawidget.cpp \
+    abstractdatatable.cpp
 
 HEADERS += \
         torgcrmmain.h \
@@ -34,7 +35,8 @@ HEADERS += \
     customerdialog.h \
     aboutdialog.h \
     customerdatawidget.h \
-    taskdatawidget.h
+    taskdatawidget.h \
+    abstractdatatable.h
 
 FORMS += \
         torgcrmmain.ui \

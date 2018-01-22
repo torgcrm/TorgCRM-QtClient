@@ -7,18 +7,20 @@
 #include <QJsonDocument>
 #include <QDebug>
 #include <QJsonArray>
+#include <QMenu>
+
+#include "abstractdatatable.h"
 
 namespace Ui {
 class CustomerDataWidget;
 }
 
 namespace CRMUi {
-    class CustomerDataWidget : public QWidget
+    class CustomerDataWidget : public AbstractDataTable
     {
         Q_OBJECT
 
     public:
-        explicit CustomerDataWidget(QWidget *parent = 0);
         explicit CustomerDataWidget(QWidget *parent, QJsonDocument *doc);
         ~CustomerDataWidget();
 
