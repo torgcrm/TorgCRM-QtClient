@@ -57,3 +57,18 @@ void CustomerDataWidget::customContextMenuRequested(const QPoint &point)
     qDebug() << "Selected row index: " << ui->customerDataTable->currentIndex().row();
     contextMenu->popup(ui->customerDataTable->viewport()->mapToGlobal(point));
 }
+
+void CustomerDataWidget::createNewTriggeredSlot()
+{
+    qDebug() << "Click on create new action";
+}
+
+void CustomerDataWidget::editSelectedTriggeredSlot()
+{
+    qDebug() << "Click on edit selected item";
+}
+
+void CustomerDataWidget::deleteSelectedTriggeredSlot()
+{
+    qDebug() << "Click on delete selected item";
+}

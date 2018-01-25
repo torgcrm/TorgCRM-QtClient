@@ -12,6 +12,13 @@ namespace CRMUi {
         ~AbstractDataTable();
     protected:
         QMenu *contextMenu;
+        QAction *createNewAction;
+        QAction *editSelectedAction;
+        QAction *deleteSelectedAction;
+    public slots:
+        virtual void createNewTriggeredSlot() = 0;
+        virtual void editSelectedTriggeredSlot() = 0;
+        virtual void deleteSelectedTriggeredSlot() = 0;
     };
 }
 

@@ -29,6 +29,11 @@ namespace CRMUi {
     public slots:
         void onTableDataModelClicked(const QModelIndex &index);
         void customContextMenuRequested(const QPoint &point);
+
+    protected slots:
+        void createNewTriggeredSlot();
+        void editSelectedTriggeredSlot();
+        void deleteSelectedTriggeredSlot();
     };
 }
 
