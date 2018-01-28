@@ -49,6 +49,11 @@ public:
      */
     void saveCustomer(CRMModels::Customer *customer);
     /**
+     * @brief deleteCustomer delete customer using rest framework
+     * @param customerId customer id
+     */
+    void deleteCustomer(int customerId);
+    /**
      * @brief getAllTasks return JSON object with task list from JHipster server
      */
     void getAllTasks();

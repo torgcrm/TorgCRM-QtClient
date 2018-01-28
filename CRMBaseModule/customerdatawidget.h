@@ -10,6 +10,7 @@
 #include <QMenu>
 
 #include "abstractdatatable.h"
+#include "cjsonworker.h"
 
 namespace Ui {
 class CustomerDataWidget;
@@ -26,6 +27,7 @@ namespace CRMUi {
 
     private:
         Ui::CustomerDataWidget *ui;
+        CRMCommons::CJsonWorker *cJsonWorker;
     public slots:
         void onTableDataModelClicked(const QModelIndex &index);
         void customContextMenuRequested(const QPoint &point);

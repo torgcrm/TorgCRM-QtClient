@@ -11,6 +11,8 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
     ui(new Ui::CustomerDataWidget)
 {
     ui->setupUi(this);
+    cJsonWorker = CRMCommons::CJsonWorker::getInstance();
+
     ui->customerDataTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->customerDataTable->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->customerDataTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -71,4 +73,7 @@ void CustomerDataWidget::editSelectedTriggeredSlot()
 void CustomerDataWidget::deleteSelectedTriggeredSlot()
 {
     qDebug() << "Click on delete selected item";
+    int selectedRow = ui->customerDataTable->currentIndex().row();
+    QString customerId = ui->customerDataTable->item(selectedRow, 0)->data(0).toString();
+    cJsonWorker->deleteCustomer(customerId.toInt());
 }

@@ -91,6 +91,23 @@ void CJsonWorker::saveCustomer(CRMModels::Customer *customer)
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
+void CJsonWorker::deleteCustomer(int customerId)
+{
+    QString localUrl = API_URL;
+    localUrl.append(DELETE_CUSTOMER_URL);
+    localUrl.append(QString::number(customerId));
+
+    QUrl localQUrl(localUrl);
+
+    QNetworkRequest request(localQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::DELETE_CSTMR);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
+
+    qDebug() << "Delete Customer by customer id.";
+    networkAccessManager->deleteResource(request);
+}
+
 void CJsonWorker::getAllTasks()
 {
     qDebug() << "Trying to load tasks from server...";

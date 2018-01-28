@@ -9,6 +9,7 @@
 #define SAVE_CUSTOMER_URL "/api/customers"
 #define TASKS_URL "/api/tasks"
 #define SAVE_TASK_URL "/api/tasks"
+#define DELETE_CUSTOMER_URL "/api/customers/"
 
 namespace CRMCommons {
 enum CRequestType {
@@ -16,6 +17,7 @@ enum CRequestType {
     MENUS           = 0002,
     CUSTOMERS       = 0003,
     SAVE_CUSTOMER   = 0004,
-    TASKS           = 0005
+    TASKS           = 0005,
+    DELETE_CSTMR    = 0006
 };
 }
