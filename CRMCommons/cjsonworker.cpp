@@ -91,6 +91,31 @@ void CJsonWorker::saveCustomer(CRMModels::Customer *customer)
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
+void CJsonWorker::updateCustomer(CRMModels::Customer *customer, int customerId)
+{
+    QString localUrl = API_URL;
+    localUrl.append(SAVE_CUSTOMER_URL);
+    QUrl localQUrl(localUrl);
+
+    QNetworkRequest request(localQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::SAVE_CUSTOMER);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
+
+    QJsonObject jsonObject;
+    jsonObject.insert(JSON_CSTMR_FULLNAME, customer->getFullName());
+    jsonObject.insert(JSON_CSTMR_COMMENT, customer->getComment());
+    jsonObject.insert(JSON_CSTMR_EMAIL, customer->getEmail());
+    jsonObject.insert(JSON_CSTMR_FAX, customer->getFax());
+    jsonObject.insert(JSON_CSTMR_ID, customer->getId());
+    jsonObject.insert(JSON_CSTMR_PHONE, customer->getPhone());
+    jsonObject.insert(JSON_CSTMR_SOURCE, customer->getSource());
+//    jsonObject.insert(JSON_CSTMR_TYPEID, customer->getTypeId());
+
+    qDebug() << "Post Customer JSON object to the server.";
+    networkAccessManager->put(request, QJsonDocument(jsonObject).toJson());
+}
+
 void CJsonWorker::deleteCustomer(int customerId)
 {
     QString localUrl = API_URL;

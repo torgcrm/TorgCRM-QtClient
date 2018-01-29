@@ -68,6 +68,8 @@ void CustomerDataWidget::createNewTriggeredSlot()
 void CustomerDataWidget::editSelectedTriggeredSlot()
 {
     qDebug() << "Click on edit selected item";
+    int selectedRow = ui->customerDataTable->currentIndex().row();
+    QString customerId = ui->customerDataTable->item(selectedRow, 0)->data(0).toString();
 }
 
 void CustomerDataWidget::deleteSelectedTriggeredSlot()
