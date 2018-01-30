@@ -89,6 +89,9 @@ void CJsonWorker::saveCustomer(CRMModels::Customer *customer)
 
     qDebug() << "Post Customer JSON object to the server.";
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
+
+    // emit this event
+    emit onCustomerSavedSignal(customer);
 }
 
 void CJsonWorker::updateCustomer(CRMModels::Customer *customer, int customerId)

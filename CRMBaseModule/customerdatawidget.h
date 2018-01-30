@@ -11,6 +11,7 @@
 
 #include "abstractdatatable.h"
 #include "cjsonworker.h"
+#include "customer.h"
 
 namespace Ui {
 class CustomerDataWidget;
@@ -36,6 +37,7 @@ namespace CRMUi {
         void createNewTriggeredSlot();
         void editSelectedTriggeredSlot();
         void deleteSelectedTriggeredSlot();
+        void onCustomerSavedSlot(CRMModels::Customer *customer);
     };
 }
 

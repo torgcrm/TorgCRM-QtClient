@@ -25,6 +25,8 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
     connect(ui->customerDataTable, SIGNAL(customContextMenuRequested(QPoint)),
             this, SLOT(customContextMenuRequested(QPoint)));
 
+    connect(cJsonWorker, SIGNAL(onCustomerSavedSignal(CRMModels::Customer*)), this,
+            SLOT(onCustomerSavedSlot(CRMModels::Customer*)));
 
     int i = 0;
     foreach (QJsonValue topLevelVal, doc->array()) {
@@ -94,4 +96,17 @@ void CustomerDataWidget::deleteSelectedTriggeredSlot()
     } else {
         QMessageBox::warning(this, tr("Warning"), tr("There are no selected rows"));
     }
+}
+
+void CustomerDataWidget::onCustomerSavedSlot(CRMModels::Customer *customer)
+{
+    int lastRow = ui->customerDataTable->rowCount();
+    ui->customerDataTable->insertRow(lastRow);
+    ui->customerDataTable->setItem(lastRow,0, new QTableWidgetItem(QString(customer->getId())));
+    ui->customerDataTable->setItem(lastRow,1, new QTableWidgetItem(customer->getFullName()));
+    ui->customerDataTable->setItem(lastRow,2, new QTableWidgetItem(QString(customer->getTypeId())));
+    ui->customerDataTable->setItem(lastRow,3, new QTableWidgetItem(customer->getEmail()));
+    ui->customerDataTable->setItem(lastRow,4, new QTableWidgetItem(customer->getPhone()));
+    ui->customerDataTable->setItem(lastRow,5, new QTableWidgetItem(customer->getSource()));
+    ui->customerDataTable->setItem(lastRow,6, new QTableWidgetItem(customer->getFax()));
 }

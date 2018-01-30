@@ -106,6 +106,11 @@ signals:
      * @param reply network reply with JSON
      */
     void onTasksLoadFinished(QNetworkReply *reply);
+    /**
+     * @brief onCustomerSavedSignal When new customer was saved this signal will rise
+     * @param customer customer object
+     */
+    void onCustomerSavedSignal(CRMModels::Customer *customer);
 };
 }
 #endif // CJSONWORKER_H
