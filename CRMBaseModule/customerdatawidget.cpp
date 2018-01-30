@@ -1,8 +1,10 @@
 #include <QTableWidgetItem>
+#include <QMessageBox>
 
 #include "customerdatawidget.h"
 #include "ui_customerdatawidget.h"
 #include "customer.h"
+#include "customerdialog.h"
 
 using namespace CRMUi;
 
@@ -63,19 +65,33 @@ void CustomerDataWidget::customContextMenuRequested(const QPoint &point)
 void CustomerDataWidget::createNewTriggeredSlot()
 {
     qDebug() << "Click on create new action";
+    CustomerDialog *customerDialog = new CustomerDialog(this);
+    customerDialog->setModal(true);
+    customerDialog->exec();
 }
 
 void CustomerDataWidget::editSelectedTriggeredSlot()
 {
     qDebug() << "Click on edit selected item";
     int selectedRow = ui->customerDataTable->currentIndex().row();
-    QString customerId = ui->customerDataTable->item(selectedRow, 0)->data(0).toString();
+    if (selectedRow >= 0) {
+        QString customerId = ui->customerDataTable->item(selectedRow, 0)->data(0).toString();
+        CustomerDialog *customerDialog = new CustomerDialog(this);
+        customerDialog->setModal(true);
+        customerDialog->exec();
+    } else {
+        QMessageBox::warning(this, tr("Warning"), tr("There are no selected rows"));
+    }
 }
 
 void CustomerDataWidget::deleteSelectedTriggeredSlot()
 {
     qDebug() << "Click on delete selected item";
     int selectedRow = ui->customerDataTable->currentIndex().row();
-    QString customerId = ui->customerDataTable->item(selectedRow, 0)->data(0).toString();
-    cJsonWorker->deleteCustomer(customerId.toInt());
+    if (selectedRow >= 0) {
+        QString customerId = ui->customerDataTable->item(selectedRow, 0)->data(0).toString();
+        cJsonWorker->deleteCustomer(customerId.toInt());
+    } else {
+        QMessageBox::warning(this, tr("Warning"), tr("There are no selected rows"));
+    }
 }
