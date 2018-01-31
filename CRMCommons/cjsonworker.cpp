@@ -1,3 +1,4 @@
+
 #include "cjsonworker.h"
 
 using namespace CRMCommons;
@@ -201,6 +202,9 @@ void CJsonWorker::onDataLoaded(QNetworkReply *reply) {
         case CRequestType::TASKS:
             onTasksDataLoaded(reply);
             break;
+        case CRequestType::DELETE_CSTMR:
+            onCustomerDeleted(reply);
+            break;
         default:
             break;
     }
@@ -229,4 +233,10 @@ void CJsonWorker::onTasksDataLoaded(QNetworkReply *reply)
 {
     qDebug() << "Tasks was loaded from server...";
     emit onTasksLoadFinished(reply);
+}
+
+void CJsonWorker::onCustomerDeleted(QNetworkReply *reply)
+{
+    qDebug() << "Customer was deleted";
+    emit onCustomerDeletedSignal(reply);
 }

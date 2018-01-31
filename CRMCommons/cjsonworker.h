@@ -77,6 +77,7 @@ private:
     void onMenuDataLoaded(QNetworkReply *reply);
     void onCustomersDataLoaded(QNetworkReply *reply);
     void onTasksDataLoaded(QNetworkReply *reply);
+    void onCustomerDeleted(QNetworkReply *reply);
 
 private slots:
     /**
@@ -111,6 +112,10 @@ signals:
      * @param customer customer object
      */
     void onCustomerSavedSignal(CRMModels::Customer *customer);
+    /**
+     * @brief onCustomerDeletedSignal emit this signal after customer was deleted
+     */
+    void onCustomerDeletedSignal(QNetworkReply *reply);
 };
 }
 #endif // CJSONWORKER_H

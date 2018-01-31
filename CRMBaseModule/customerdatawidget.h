@@ -38,6 +38,7 @@ namespace CRMUi {
         void editSelectedTriggeredSlot();
         void deleteSelectedTriggeredSlot();
         void onCustomerSavedSlot(CRMModels::Customer *customer);
+        void onCustomerDeletedSlot(QNetworkReply *reply);
     };
 }
 

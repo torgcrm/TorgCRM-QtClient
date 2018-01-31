@@ -28,6 +28,9 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
     connect(cJsonWorker, SIGNAL(onCustomerSavedSignal(CRMModels::Customer*)), this,
             SLOT(onCustomerSavedSlot(CRMModels::Customer*)));
 
+    connect(cJsonWorker, SIGNAL(onCustomerDeletedSignal(QNetworkReply *)), this,
+            SLOT(onCustomerDeletedSlot(QNetworkReply *)));
+
     int i = 0;
     foreach (QJsonValue topLevelVal, doc->array()) {
         QJsonObject topLevelObject = topLevelVal.toObject();
@@ -109,4 +112,10 @@ void CustomerDataWidget::onCustomerSavedSlot(CRMModels::Customer *customer)
     ui->customerDataTable->setItem(lastRow,4, new QTableWidgetItem(customer->getPhone()));
     ui->customerDataTable->setItem(lastRow,5, new QTableWidgetItem(customer->getSource()));
     ui->customerDataTable->setItem(lastRow,6, new QTableWidgetItem(customer->getFax()));
+}
+
+void CustomerDataWidget::onCustomerDeletedSlot(QNetworkReply *reply)
+{
+    ui->customerDataTable->removeRow(ui->customerDataTable->currentRow());
+    qDebug() << "Remove customer from customer datatable";
 }
