@@ -1,4 +1,3 @@
-
 #include "cjsonworker.h"
 
 using namespace CRMCommons;
@@ -90,9 +89,6 @@ void CJsonWorker::saveCustomer(CRMModels::Customer *customer)
 
     qDebug() << "Post Customer JSON object to the server.";
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
-
-    // emit this event
-    emit onCustomerSavedSignal(customer);
 }
 
 void CJsonWorker::updateCustomer(CRMModels::Customer *customer, int customerId)
@@ -205,6 +201,9 @@ void CJsonWorker::onDataLoaded(QNetworkReply *reply) {
         case CRequestType::DELETE_CSTMR:
             onCustomerDeleted(reply);
             break;
+        case CRequestType::SAVE_CUSTOMER:
+            onCustomerSaved(reply);
+            break;
         default:
             break;
     }
@@ -239,4 +238,13 @@ void CJsonWorker::onCustomerDeleted(QNetworkReply *reply)
 {
     qDebug() << "Customer was deleted";
     emit onCustomerDeletedSignal(reply);
+}
+
+void CJsonWorker::onCustomerSaved(QNetworkReply *reply)
+{
+    qDebug() << "Customer was saved";
+    CRMModels::Customer *customer = new CRMModels::Customer();
+    customer->fromJSON(reply->readAll());
+
+    emit onCustomerSavedSignal(customer);
 }

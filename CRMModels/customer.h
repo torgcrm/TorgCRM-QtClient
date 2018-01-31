@@ -2,6 +2,10 @@
 #define CUSTOMER_H
 
 #include <QString>
+#include <QJsonDocument>
+#include <QByteArray>
+#include <QJsonObject>
+#include <QDebug>
 
 #include "genericmodel.h"
 
@@ -38,6 +42,7 @@ namespace CRMModels {
         int getTypeId() const;
         void setTypeId(int value);
 
+        void fromJSON(QByteArray json);
     private:
         QString fullName;
         QString phone;

@@ -71,3 +71,17 @@ void Customer::setTypeId(int value)
 {
     typeId = value;
 }
+
+void Customer::fromJSON(QByteArray json)
+{
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(json);
+    QJsonObject object = jsonDoc.object();
+    setId(object.value(JSON_CSTMR_ID).toInt());
+    setFullName(object.value(JSON_CSTMR_FULLNAME).toString());
+    setEmail(object.value(JSON_CSTMR_EMAIL).toString());
+    setComment(object.value(JSON_CSTMR_COMMENT).toString());
+    setFax(object.value(JSON_CSTMR_FAX).toString());
+    setPhone(object.value(JSON_CSTMR_PHONE).toString());
+    setSource(object.value(JSON_CSTMR_SOURCE).toString());
+    setTypeId(object.value(JSON_CSTMR_TYPEID).toInt());
+}

@@ -78,6 +78,7 @@ private:
     void onCustomersDataLoaded(QNetworkReply *reply);
     void onTasksDataLoaded(QNetworkReply *reply);
     void onCustomerDeleted(QNetworkReply *reply);
+    void onCustomerSaved(QNetworkReply *reply);
 
 private slots:
     /**

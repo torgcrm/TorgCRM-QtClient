@@ -103,11 +103,12 @@ void CustomerDataWidget::deleteSelectedTriggeredSlot()
 
 void CustomerDataWidget::onCustomerSavedSlot(CRMModels::Customer *customer)
 {
+    qDebug() << "Adding new customer to datatabel row";
     int lastRow = ui->customerDataTable->rowCount();
     ui->customerDataTable->insertRow(lastRow);
-    ui->customerDataTable->setItem(lastRow,0, new QTableWidgetItem(QString(customer->getId())));
+    ui->customerDataTable->setItem(lastRow,0, new QTableWidgetItem(QString::number(customer->getId())));
     ui->customerDataTable->setItem(lastRow,1, new QTableWidgetItem(customer->getFullName()));
-    ui->customerDataTable->setItem(lastRow,2, new QTableWidgetItem(QString(customer->getTypeId())));
+    //ui->customerDataTable->setItem(lastRow,2, new QTableWidgetItem(QString(customer->getTypeId())));
     ui->customerDataTable->setItem(lastRow,3, new QTableWidgetItem(customer->getEmail()));
     ui->customerDataTable->setItem(lastRow,4, new QTableWidgetItem(customer->getPhone()));
     ui->customerDataTable->setItem(lastRow,5, new QTableWidgetItem(customer->getSource()));
