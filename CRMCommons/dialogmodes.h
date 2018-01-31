@@ -1,0 +1,4 @@
+#ifndef DIALOGMODES_H
+#define DIALOGMODES_H
+
+#endif // DIALOGMODES_H
