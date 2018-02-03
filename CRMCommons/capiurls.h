@@ -18,6 +18,7 @@ enum CRequestType {
     CUSTOMERS       = 0003,
     SAVE_CUSTOMER   = 0004,
     TASKS           = 0005,
-    DELETE_CSTMR    = 0006
+    DELETE_CSTMR    = 0006,
+    CSTMR_BY_ID     = 0007,
 };
 }

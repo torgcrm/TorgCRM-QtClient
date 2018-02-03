@@ -5,6 +5,7 @@
 #include "ui_customerdatawidget.h"
 #include "customer.h"
 #include "customerdialog.h"
+#include "cdialogmode.h"
 
 using namespace CRMUi;
 
@@ -30,6 +31,9 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
 
     connect(cJsonWorker, SIGNAL(onCustomerDeletedSignal(QNetworkReply *)), this,
             SLOT(onCustomerDeletedSlot(QNetworkReply *)));
+
+    connect(cJsonWorker, SIGNAL(onCustomerGetByIdSignal(CRMModels::Customer *)), this,
+            SLOT(onCustomerGetByIdSlot(CRMModels::Customer*)));
 
     int i = 0;
     foreach (QJsonValue topLevelVal, doc->array()) {
@@ -81,9 +85,7 @@ void CustomerDataWidget::editSelectedTriggeredSlot()
     int selectedRow = ui->customerDataTable->currentIndex().row();
     if (selectedRow >= 0) {
         QString customerId = ui->customerDataTable->item(selectedRow, 0)->data(0).toString();
-        CustomerDialog *customerDialog = new CustomerDialog(this);
-        customerDialog->setModal(true);
-        customerDialog->exec();
+        cJsonWorker->getCustomerById(customerId);
     } else {
         QMessageBox::warning(this, tr("Warning"), tr("There are no selected rows"));
     }
@@ -119,4 +121,11 @@ void CustomerDataWidget::onCustomerDeletedSlot(QNetworkReply *reply)
 {
     ui->customerDataTable->removeRow(ui->customerDataTable->currentRow());
     qDebug() << "Remove customer from customer datatable";
+}
+
+void CustomerDataWidget::onCustomerGetByIdSlot(CRMModels::Customer *customer)
+{
+    CustomerDialog *customerDialog = new CustomerDialog(CRMCommons::DialogMode::EDITMODE, customer, this);
+    customerDialog->setModal(true);
+    customerDialog->exec();
 }

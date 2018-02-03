@@ -37,7 +37,8 @@ SOURCES += ctreeitem.cpp \
 HEADERS += ctreeitem.h \
     cjsonworker.h \
     cglobalobject.h \
-    capiurls.h
+    capiurls.h \
+    cdialogmode.h
 
 unix {
     target.path = /usr/lib

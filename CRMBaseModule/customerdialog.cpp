@@ -19,11 +19,14 @@ CustomerDialog::CustomerDialog(QWidget *parent) :
     setup();
 }
 
-CustomerDialog::CustomerDialog(int mode, QWidget *parent):
+CustomerDialog::CustomerDialog(int mode, CRMModels::Customer *customer, QWidget *parent):
     QDialog(parent),
     ui(new Ui::CustomerDialog)
 {
     setup();
+    if (customer) {
+        this->ui->customerFullNameInput->setText(customer->getFullName());
+    }
     this->mode = mode;
 }
 

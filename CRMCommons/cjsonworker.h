@@ -44,6 +44,11 @@ public:
      */
     void getAllCustomers();
     /**
+     * @brief getCustomerById get customer by id
+     * @param customerId customer id
+     */
+    void getCustomerById(QString customerId);
+    /**
      * @brief saveCustomer post JSON object with Customer to JHipster server
      * @param customer Customer model
      */
@@ -79,7 +84,7 @@ private:
     void onTasksDataLoaded(QNetworkReply *reply);
     void onCustomerDeleted(QNetworkReply *reply);
     void onCustomerSaved(QNetworkReply *reply);
-
+    void onCustomerGetById(QNetworkReply *reply);
 private slots:
     /**
      * @brief onDataLoaded slot execute when server return QNetworkReply
@@ -117,6 +122,11 @@ signals:
      * @brief onCustomerDeletedSignal emit this signal after customer was deleted
      */
     void onCustomerDeletedSignal(QNetworkReply *reply);
+    /**
+     * @brief onCustomerGetByIdSignal get customer by id signal
+     * @param reply json reply
+     */
+    void onCustomerGetByIdSignal(CRMModels::Customer *customer);
 };
 }
 #endif // CJSONWORKER_H

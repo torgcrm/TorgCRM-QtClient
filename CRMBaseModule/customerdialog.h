@@ -18,7 +18,7 @@ class CustomerDialog : public QDialog
 
 public:
     explicit CustomerDialog(QWidget *parent = 0);
-    explicit CustomerDialog(int mode, QWidget *parent = 0);
+    explicit CustomerDialog(int mode,CRMModels::Customer *customer = 0, QWidget *parent = 0);
     ~CustomerDialog();
 
 protected:

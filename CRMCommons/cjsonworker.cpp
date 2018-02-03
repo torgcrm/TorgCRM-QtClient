@@ -66,6 +66,21 @@ void CJsonWorker::getAllCustomers()
     networkAccessManager->get(request);
 }
 
+void CJsonWorker::getCustomerById(QString customerId)
+{
+    QString localUrl = API_URL;
+    localUrl.append(CUSTOMERS_URL).append("/").append(customerId);
+
+    QUrl localQUrl(localUrl);
+
+    QNetworkRequest request(localQUrl);
+    request.setAttribute(QNetworkRequest::User, CRequestType::CSTMR_BY_ID);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
+
+    networkAccessManager->get(request);
+}
+
 void CJsonWorker::saveCustomer(CRMModels::Customer *customer)
 {
     QString localUrl = API_URL;
@@ -204,6 +219,9 @@ void CJsonWorker::onDataLoaded(QNetworkReply *reply) {
         case CRequestType::SAVE_CUSTOMER:
             onCustomerSaved(reply);
             break;
+        case CRequestType::CSTMR_BY_ID:
+            onCustomerGetById(reply);
+            break;
         default:
             break;
     }
@@ -247,4 +265,12 @@ void CJsonWorker::onCustomerSaved(QNetworkReply *reply)
     customer->fromJSON(reply->readAll());
 
     emit onCustomerSavedSignal(customer);
+}
+
+void CJsonWorker::onCustomerGetById(QNetworkReply *reply)
+{
+    qDebug() << "Edit customer";
+    CRMModels::Customer *customer = new CRMModels::Customer();
+    customer->fromJSON(reply->readAll());
+    emit onCustomerGetByIdSignal(customer);
 }
