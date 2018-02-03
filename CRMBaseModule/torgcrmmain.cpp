@@ -145,7 +145,7 @@ void TorgCRMMain::onCustomersLoadFinished(QNetworkReply *reply)
         QFrame *tabWidget = qobject_cast<QFrame *>(ui->mainCRMTabWidget->widget(this->getTabByName("Customers")));
         if (tabWidget->children().size() < 1) {
             QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-            CustomerDataWidget *customerDataWidget = new CustomerDataWidget(tabWidget, &doc);
+            customerDataWidget = new CustomerDataWidget(tabWidget, &doc);
 
             QVBoxLayout *vBoxLayout = new QVBoxLayout;
             tabWidget->setLayout(vBoxLayout);
@@ -165,7 +165,7 @@ void TorgCRMMain::onTasksLoadFinished(QNetworkReply *reply) {
         QFrame *tabWidget = qobject_cast<QFrame *>(ui->mainCRMTabWidget->widget(this->getTabByName("Tasks")));
         if (tabWidget->children().size() < 1) {
             QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-            TaskDataWidget *taskDataWidget = new TaskDataWidget(tabWidget, &doc);
+            taskDataWidget = new TaskDataWidget(tabWidget, &doc);
 
             QVBoxLayout *vBoxLayout = new QVBoxLayout;
             tabWidget->setLayout(vBoxLayout);
@@ -186,7 +186,7 @@ void TorgCRMMain::on_actionClose_triggered()
 
 void TorgCRMMain::on_actionAdd_New_triggered()
 {
-    CustomerDialog *customerDialog = new CustomerDialog(this);
+    CustomerDialog *customerDialog = new CustomerDialog(CRMCommons::DialogMode::CRTMODE, 0, this);
     customerDialog->setModal(true);
     customerDialog->exec();
 }
@@ -233,5 +233,12 @@ void TorgCRMMain::openTaskDialog() {
 
 void TorgCRMMain::on_mainCRMTabWidget_tabCloseRequested(int index)
 {
+    QString tabTitle = ui->mainCRMTabWidget->tabText(index);
+    if (QString::compare(tabTitle, "Customers", Qt::CaseInsensitive) == 0) {
+        delete customerDataWidget;
+    }
+    if (QString::compare(tabTitle, "Tasks", Qt::CaseInsensitive) == 0) {
+        delete taskDataWidget;
+    }
     ui->mainCRMTabWidget->removeTab(index);
 }

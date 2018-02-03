@@ -106,14 +106,14 @@ void CJsonWorker::saveCustomer(CRMModels::Customer *customer)
     networkAccessManager->post(request, QJsonDocument(jsonObject).toJson());
 }
 
-void CJsonWorker::updateCustomer(CRMModels::Customer *customer, int customerId)
+void CJsonWorker::updateCustomer(CRMModels::Customer *customer)
 {
     QString localUrl = API_URL;
     localUrl.append(SAVE_CUSTOMER_URL);
     QUrl localQUrl(localUrl);
 
     QNetworkRequest request(localQUrl);
-    request.setAttribute(QNetworkRequest::User, CRequestType::SAVE_CUSTOMER);
+    request.setAttribute(QNetworkRequest::User, CRequestType::CSTMR_UPDATE);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader(AUTHORIZATION_HEADER, getTokenBearer().toLocal8Bit());
 
@@ -127,7 +127,7 @@ void CJsonWorker::updateCustomer(CRMModels::Customer *customer, int customerId)
     jsonObject.insert(JSON_CSTMR_SOURCE, customer->getSource());
 //    jsonObject.insert(JSON_CSTMR_TYPEID, customer->getTypeId());
 
-    qDebug() << "Post Customer JSON object to the server.";
+    qDebug() << "Put Customer JSON object to the server.";
     networkAccessManager->put(request, QJsonDocument(jsonObject).toJson());
 }
 
@@ -219,6 +219,9 @@ void CJsonWorker::onDataLoaded(QNetworkReply *reply) {
         case CRequestType::SAVE_CUSTOMER:
             onCustomerSaved(reply);
             break;
+        case CRequestType::CSTMR_UPDATE:
+            onCustomerUpdated(reply);
+            break;
         case CRequestType::CSTMR_BY_ID:
             onCustomerGetById(reply);
             break;
@@ -265,6 +268,15 @@ void CJsonWorker::onCustomerSaved(QNetworkReply *reply)
     customer->fromJSON(reply->readAll());
 
     emit onCustomerSavedSignal(customer);
+}
+
+void CJsonWorker::onCustomerUpdated(QNetworkReply *reply)
+{
+    qDebug() << "Customer was updated";
+    CRMModels::Customer *customer = new CRMModels::Customer();
+    customer->fromJSON(reply->readAll());
+
+    emit onCustomerUpdatedSignal(customer);
 }
 
 void CJsonWorker::onCustomerGetById(QNetworkReply *reply)

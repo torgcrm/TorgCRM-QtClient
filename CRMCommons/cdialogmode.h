@@ -5,6 +5,7 @@ namespace CRMCommons {
 enum DialogMode {
     VIEWMODE    = 00,
     EDITMODE    = 01,
+    CRTMODE     = 02,
 };
 }
 

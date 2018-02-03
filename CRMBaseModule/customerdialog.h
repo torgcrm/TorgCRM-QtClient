@@ -6,6 +6,7 @@
 
 #include "customer.h"
 #include "cjsonworker.h"
+#include "cdialogmode.h"
 
 namespace Ui {
 class CustomerDialog;
@@ -32,6 +33,7 @@ private:
     Ui::CustomerDialog *ui;
     int mode;
     CRMCommons::CJsonWorker *cJsonWorker;
+    CRMModels::Customer *customer;
 };
 }
 #endif // CUSTOMERDIALOG_H

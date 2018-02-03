@@ -67,6 +67,8 @@ private:
     void openTaskDialog();
     bool checkExistingTab(int index, CRMCommons::CTreeItem *cTreeItem);
     int getTabByName(QString tabName);
+    CustomerDataWidget *customerDataWidget;
+    TaskDataWidget *taskDataWidget;
 private slots:
     void on_mainMenu_itemClicked(QTreeWidgetItem *item, int index);
     void onMainMenuDataLoadFinished(QNetworkReply *reply);

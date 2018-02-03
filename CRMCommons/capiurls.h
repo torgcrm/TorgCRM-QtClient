@@ -20,5 +20,6 @@ enum CRequestType {
     TASKS           = 0005,
     DELETE_CSTMR    = 0006,
     CSTMR_BY_ID     = 0007,
+    CSTMR_UPDATE    = 0010
 };
 }

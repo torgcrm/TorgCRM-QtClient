@@ -40,6 +40,7 @@ namespace CRMUi {
         void onCustomerSavedSlot(CRMModels::Customer *customer);
         void onCustomerDeletedSlot(QNetworkReply *reply);
         void onCustomerGetByIdSlot(CRMModels::Customer *customer);
+        void onCustomerUpdatedSlot(CRMModels::Customer *customer);
     };
 }
 

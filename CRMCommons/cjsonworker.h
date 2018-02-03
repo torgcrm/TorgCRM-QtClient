@@ -57,7 +57,7 @@ public:
      * @brief deleteCustomer delete customer using rest framework
      * @param customerId customer id
      */
-    void updateCustomer(CRMModels::Customer *customer, int customerId);
+    void updateCustomer(CRMModels::Customer *customer);
     /**
      * @brief deleteCustomer delete customer using rest framework
      * @param customerId customer id
@@ -84,6 +84,7 @@ private:
     void onTasksDataLoaded(QNetworkReply *reply);
     void onCustomerDeleted(QNetworkReply *reply);
     void onCustomerSaved(QNetworkReply *reply);
+    void onCustomerUpdated(QNetworkReply *reply);
     void onCustomerGetById(QNetworkReply *reply);
 private slots:
     /**
@@ -118,6 +119,11 @@ signals:
      * @param customer customer object
      */
     void onCustomerSavedSignal(CRMModels::Customer *customer);
+    /**
+     * @brief onCustomerUpdatedSignal After customer was updated emit this event
+     * @param customer customer object
+     */
+    void onCustomerUpdatedSignal(CRMModels::Customer *customer);
     /**
      * @brief onCustomerDeletedSignal emit this signal after customer was deleted
      */

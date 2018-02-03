@@ -25,7 +25,13 @@ CustomerDialog::CustomerDialog(int mode, CRMModels::Customer *customer, QWidget 
 {
     setup();
     if (customer) {
+        this->customer = customer;
         this->ui->customerFullNameInput->setText(customer->getFullName());
+        this->ui->customerPhoneNumberInput->setText(customer->getPhone());
+        this->ui->customerEmailInput->setText(customer->getEmail());
+        this->ui->customerFaxInput->setText(customer->getFax());
+        this->ui->customerSourceInput->setText(customer->getSource());
+        this->ui->customerCommentsTextInput->setText(customer->getComment());
     }
     this->mode = mode;
 }
@@ -47,7 +53,12 @@ void CustomerDialog::dialogAccepted()
     customer.setSource(ui->customerSourceInput->text());
     customer.setComment(ui->customerCommentsTextInput->toPlainText());
 
-    cJsonWorker->saveCustomer(&customer);
+    if (mode == CRMCommons::DialogMode::EDITMODE) {
+        customer.setId(this->customer->getId());
+        cJsonWorker->updateCustomer(&customer);
+    } else if (mode == CRMCommons::DialogMode::CRTMODE) {
+        cJsonWorker->saveCustomer(&customer);
+    }
 }
 
 void CustomerDialog::dialogRejected()

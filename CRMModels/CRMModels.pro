@@ -31,7 +31,6 @@ SOURCES += \
 HEADERS += \
     customer.h \
     genericmodel.h \
-    dialogmodes.h \
     task.h
 
 unix {

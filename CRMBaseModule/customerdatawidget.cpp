@@ -29,6 +29,9 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
     connect(cJsonWorker, SIGNAL(onCustomerSavedSignal(CRMModels::Customer*)), this,
             SLOT(onCustomerSavedSlot(CRMModels::Customer*)));
 
+    connect(cJsonWorker, SIGNAL(onCustomerUpdatedSignal(CRMModels::Customer*)), this,
+            SLOT(onCustomerUpdatedSlot(CRMModels::Customer*)));
+
     connect(cJsonWorker, SIGNAL(onCustomerDeletedSignal(QNetworkReply *)), this,
             SLOT(onCustomerDeletedSlot(QNetworkReply *)));
 
@@ -74,7 +77,7 @@ void CustomerDataWidget::customContextMenuRequested(const QPoint &point)
 void CustomerDataWidget::createNewTriggeredSlot()
 {
     qDebug() << "Click on create new action";
-    CustomerDialog *customerDialog = new CustomerDialog(this);
+    CustomerDialog *customerDialog = new CustomerDialog(CRMCommons::CRTMODE, 0, this);
     customerDialog->setModal(true);
     customerDialog->exec();
 }
@@ -115,6 +118,17 @@ void CustomerDataWidget::onCustomerSavedSlot(CRMModels::Customer *customer)
     ui->customerDataTable->setItem(lastRow,4, new QTableWidgetItem(customer->getPhone()));
     ui->customerDataTable->setItem(lastRow,5, new QTableWidgetItem(customer->getSource()));
     ui->customerDataTable->setItem(lastRow,6, new QTableWidgetItem(customer->getFax()));
+}
+
+void CustomerDataWidget::onCustomerUpdatedSlot(CRMModels::Customer *customer)
+{
+    qDebug() << "Update customer";
+    int selectedRow = ui->customerDataTable->currentIndex().row();
+    ui->customerDataTable->item(selectedRow, 1)->setData(0, customer->getFullName());
+    ui->customerDataTable->item(selectedRow, 3)->setData(0, customer->getEmail());
+    ui->customerDataTable->item(selectedRow, 4)->setData(0, customer->getPhone());
+    ui->customerDataTable->item(selectedRow, 5)->setData(0, customer->getSource());
+    ui->customerDataTable->item(selectedRow, 6)->setData(0, customer->getFax());
 }
 
 void CustomerDataWidget::onCustomerDeletedSlot(QNetworkReply *reply)
