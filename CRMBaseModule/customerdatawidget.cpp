@@ -19,6 +19,9 @@ CustomerDataWidget::CustomerDataWidget(QWidget *parent, QJsonDocument *doc) :
     ui->customerDataTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->customerDataTable->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->customerDataTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    for (int i = 0; i< ui->customerDataTable->horizontalHeader()->count(); i++) {
+        ui->customerDataTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
+    }
 
     connect(ui->customerDataTable, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(onTableDataModelClicked(QModelIndex)));
